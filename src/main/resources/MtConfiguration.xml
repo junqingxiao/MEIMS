@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="driverName">com.mysql.jdbc.Driver</property>
+    <property name="url">jdbc:mysql://localhost:3307?useUnicode=true&amp;characterEncoding=UTF8&amp;user=mk&amp;password=123</property>
+    <property name="multiMode">SCHEMA</property>
+</configuration>

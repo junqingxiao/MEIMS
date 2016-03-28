@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+
+    <!-- 通过java代码设置 -->
+    <!-- admin的日志 输出到文件 -->
+    <!-- tenant的日志 输出到文件 -->
+
+    <!-- 根logger的设置-->
+    <root>
+        <priority value ="debug"/>
+    </root>
+</log4j:configuration>
