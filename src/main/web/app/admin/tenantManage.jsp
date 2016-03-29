@@ -31,12 +31,13 @@
                     <s:iterator value="list" status="st">
                     <li>
                         <div class="chat-body">
-                            <div class="header">
-                                <strong class="primary-font"><input type="text" value=<s:property value="name" /> ></strong>
+                            <div class="header" >
+                                <strong class="primary-font" ><input type="text" value=<s:property value="name" /> ></strong>
                                 <small class="text-muted"><input type="text" value=<s:property value="password" /> ></small>
-                                <div class="pull-right action-buttons" >
-                                    <a href="#" class="pencil"><span class="glyphicon glyphicon-pencil chat-body-glyphicon-pencil"></span></a>
-                                    <a href="#" class="trash"><span class="glyphicon glyphicon-trash" ></span></a>
+                                <!--todo-->
+                                <div class="pull-right action-buttons">
+                                    <a href="#" class="pencil"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="#" class="trash"><span  class="glyphicon glyphicon-trash"  onclick="deleteTenant(this)"></span></a>
                                 </div>
                             </div>
                         </div>

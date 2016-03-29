@@ -4,12 +4,12 @@ import org.apache.log4j.Logger;
 
 /**
  * 基础DAO,这是一个抽象类,请用具体得DAO继承此类
- * T 取决于使用的数据裤接口
+ * T 取决于使用的数据库接口
  * MtResultSet 对应 MtConnector
  * ResultSet 对应 JDBC
  * @author mk
  */
-public abstract class AbstractDAO<T>
+abstract class AbstractDAO<T>
 {
     /**
      * 获取实体类型,需要继承,内部使用
@@ -57,6 +57,16 @@ public abstract class AbstractDAO<T>
      * @param no 主键
      */
     public abstract void delete(int no);
+
+    /**
+     * 根据2属性删除一条纪录
+     */
+    public abstract void delete(String name1,Object value1,String name2,Object value2);
+
+    /**
+     * 根据3属性删除一条纪录
+     */
+    public abstract void delete(String name1,Object value1,String name2,Object value2,String name3,Object value3);
 
     /**
      * 根据一个属性查询

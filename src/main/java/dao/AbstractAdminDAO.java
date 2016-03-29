@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.Statement;
 
-public abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
+abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
 {
     //这里直接通过url指定tenant_admin
     private static final String url="jdbc:mysql://localhost:3307/tenant_admin?user=mk&password=123&useUnicode=true&characterEncoding=UTF8";
@@ -59,7 +59,7 @@ public abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     public final void insert(String name1,Object value1,String name2,Object value2)
     {
         String sql="insert into "+getClassName()+"("+name1+","+name2+") values('"+value1+"','"+value2+"')";
-        executeInsert(sql);
+        executeUpdate(sql);
     }
 
     /**
@@ -69,7 +69,7 @@ public abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     public final void insert(String name1,Object value1,String name2,Object value2,String name3,Object value3)
     {
         String sql="insert into "+getClassName()+"("+name1+","+name2+","+name3+") values('"+value1+"','"+value2+"','"+value3+"')";
-        executeInsert(sql);
+        executeUpdate(sql);
     }
 
     /**
@@ -80,18 +80,29 @@ public abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     public final void delete(int no)
     {
         String sql="delete from "+getClassName()+" where No="+no;
-        try
-        {
-            Statement stmt=connection.createStatement();
-            stmt.executeUpdate(sql);
-            getLogger().info("Delete executed.");
-        }
-        catch (SQLException e)
-        {
-            getLogger().error("could not execute delete",e);
-            throw new RuntimeException();
-        }
+        executeUpdate(sql);
     }
+
+    /**
+     * 根据2属性删除一条纪录
+     */
+    @Override
+    public final void delete(String name1,Object value1,String name2,Object value2)
+    {
+        String sql="delete from "+getClassName()+" where "+name1+"='"+value1+"' and "+name2+"='"+value2+"'";
+        executeUpdate(sql);
+    }
+
+    /**
+     * 根据3属性删除一条纪录
+     */
+    @Override
+    public final void delete(String name1,Object value1,String name2,Object value2,String name3,Object value3)
+    {
+        String sql="delete from "+getClassName()+" where "+name1+"='"+value1+"' and "+name2+"='"+value2+"' and "+name3+"='"+value3+"'";
+        executeUpdate(sql);
+    }
+
 
     /**
      * 根据一个属性查询
@@ -186,24 +197,6 @@ public abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     {
         String sql="update "+getClassName()+" set "+name1+"='"+value1+"' and "+name2+"='"+value2+"' and "+name3+"='"+value3+"' where No="+no;
         executeUpdate(sql);
-    }
-
-    /**
-     *带异常检测的插入
-     */
-    private void executeInsert(String sql)
-    {
-        try
-        {
-            Statement stmt=connection.createStatement();
-            stmt.executeUpdate(sql);
-            getLogger().info("Insert executed.");
-        }
-        catch (SQLException e)
-        {
-            getLogger().error("could not execute insert",e);
-            throw new RuntimeException();
-        }
     }
 
     /**

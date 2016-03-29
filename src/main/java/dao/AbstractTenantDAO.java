@@ -9,7 +9,7 @@ import org.MtConnector.Configuration.MtConfiguration;
 import org.MtConnector.Session.MtResultSet;
 import org.MtConnector.Session.MtSession;
 
-public abstract class AbstractTenantDAO extends AbstractDAO<MtResultSet>
+abstract class AbstractTenantDAO extends AbstractDAO<MtResultSet>
 {
     /**
      * 配置文件路径
@@ -62,6 +62,26 @@ public abstract class AbstractTenantDAO extends AbstractDAO<MtResultSet>
     public final void delete(int no)
     {
         String sql="delete from "+getClassName()+" where No="+no;
+        session.executeUpdate(sql);
+    }
+
+    /**
+     * 根据2属性删除一条纪录
+     */
+    @Override
+    public final void delete(String name1,Object value1,String name2,Object value2)
+    {
+        String sql="delete from "+getClassName()+" where "+name1+"='"+value1+"' and "+name2+"='"+value2+"'";
+        session.executeUpdate(sql);
+    }
+
+    /**
+     * 根据3属性删除一条纪录
+     */
+    @Override
+    public final void delete(String name1,Object value1,String name2,Object value2,String name3,Object value3)
+    {
+        String sql="delete from "+getClassName()+" where "+name1+"='"+value1+"' and "+name2+"='"+value2+"' and "+name3+"='"+value3+"'";
         session.executeUpdate(sql);
     }
 

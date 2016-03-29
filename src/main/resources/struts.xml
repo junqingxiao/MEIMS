@@ -31,5 +31,8 @@
         <action name="tenantManage" class="action.app.admin.TenantManageAction">
             <result>app/admin/tenantManage.jsp</result>
         </action>
+        <action name="tenantDelete" class="action.app.admin.TenantDeleteAction">
+            <result type="redirect">/tenantManage</result>
+        </action>
     </package>
 </struts>

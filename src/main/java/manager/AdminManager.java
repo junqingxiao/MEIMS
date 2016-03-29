@@ -31,6 +31,14 @@ public class AdminManager extends AbstractManager
     }
 
     /**
+     * 根据name,password删除tenant
+     */
+    public final void deleteTenant(String name,String password)
+    {
+        tenantDAO.delete("name",name,"password",password);
+    }
+
+    /**
      * 获得tenant的列表
      * @return 一个tenant对象的list
      */

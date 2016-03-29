@@ -61,6 +61,24 @@
             xmlhttp.open("get","tenantManage",true);
             xmlhttp.send();
         }
+
+        //删除租户
+        function deleteTenant(span)
+        {
+            var name=$(span).parent().parent().prev().prev().children(":first").attr("value");
+            var password=$(span).parent().parent().prev().children(":first").attr("value");
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("main").innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("get","tenantDelete?name="+name+"&password="+password,true);
+            xmlhttp.send();
+        }
     </script>
 
     <link rel="stylesheet" type="text/css"  href="css/style.css">
