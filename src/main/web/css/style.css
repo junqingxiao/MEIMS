@@ -500,6 +500,32 @@ h1.page-header {
     font-size: 18px;
 }
 
+.chat-body input
+{
+    border: 0;
+    width: 40%;
+}
+
+.chat-body a.pencil .glyphicon
+{
+    display: inline-block;
+    color: #9fadbb;
+}
+
+.chat-body a.trash .glyphicon
+{
+    display: inline-block;
+    color: #9fadbb;
+}
+
+.chat-body a.pencil .glyphicon:hover {
+    color: #777777;
+}
+
+.chat-body a.trash .glyphicon:hover {
+    color: #ef4040;
+}
+
 /*List Widget*/
 
 .todo-list-item .glyphicon {

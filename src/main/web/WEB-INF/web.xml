@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
     <!-- 登录权限过滤器 检查session中的'name' == null? 过滤非法的jsp请求 -->
     <filter>
         <filter-name>Login</filter-name>
@@ -10,8 +11,9 @@
     </filter>
     <filter-mapping>
         <filter-name>Login</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/app/*</url-pattern>
     </filter-mapping>
+
     <!-- struts2 -->
     <filter>
         <filter-name>struts2</filter-name>

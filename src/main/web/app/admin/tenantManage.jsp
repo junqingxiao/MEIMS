@@ -28,30 +28,20 @@
             <div class="panel-heading" id="accordion"><span class="glyphicon glyphicon-th"></span> 租户</div>
             <div class="panel-body">
                 <ul>
+                    <s:iterator value="list" status="st">
                     <li>
                         <div class="chat-body">
                             <div class="header">
-                                <!--todo 将数据库中的信息显示出来-->
-                                <strong class="primary-font"><input type="text" style="width: 40%;border: 0" value="John Doe" ></strong> <small class="text-muted"><input type="text" style="border: 0" value="123" ></small>
+                                <strong class="primary-font"><input type="text" value=<s:property value="name" /> ></strong>
+                                <small class="text-muted"><input type="text" value=<s:property value="password" /> ></small>
+                                <div class="pull-right action-buttons" >
+                                    <a href="#" class="pencil"><span class="glyphicon glyphicon-pencil chat-body-glyphicon-pencil"></span></a>
+                                    <a href="#" class="trash"><span class="glyphicon glyphicon-trash" ></span></a>
+                                </div>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="chat-body">
-                            <div class="header">
-
-                                <strong class="primary-font"><input type="text" style="width: 40%;border: 0" value="John Doe" ></strong> <small class="text-muted"><input type="text" style="border: 0" value="123" ></small>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="chat-body">
-                            <div class="header">
-
-                                <strong class="primary-font"><input type="text" style="width: 40%;border: 0" value="John Doe" ></strong> <small class="text-muted"><input type="text" style="border: 0" value="123" ></small>
-                            </div>
-                        </div>
-                    </li>
+                    </s:iterator>
                 </ul>
             </div>
         </div>
@@ -68,7 +58,7 @@
                         </div>
                         <div class="pull-right action-buttons">
                             <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
+                            <a href="#" class="flag" ><span class="glyphicon glyphicon-flag" ></span></a>
                             <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
                         </div>
                     </li>
