@@ -31,6 +31,35 @@ public class AdminManager extends AbstractManager
     }
 
     /**
+     *根据旧的name password更新
+     * @return 新的name是否已存在
+     */
+    public final boolean updateTenant(String oldName,String oldPassword,String name,String password)
+    {
+        if (isTenant(name) && !oldName.equals(name))
+        {//新改的名字是已经存在的
+            return true;
+        }
+        else
+        {
+            ResultSet set=tenantDAO.query("name",oldName,"password",oldPassword);
+
+            try
+            {
+                set.next();
+                tenantDAO.update("name",name,"password",password,set.getInt(1));
+                getLogger().info("updated tenant.");
+
+            }
+            catch (SQLException e)
+            {
+                getLogger().error("Error in update tenant.",e);
+                throw new RuntimeException();
+            }
+        }
+        return false;
+    }
+    /**
      * 根据name,password删除tenant
      */
     public final void deleteTenant(String name,String password)
@@ -146,6 +175,26 @@ public class AdminManager extends AbstractManager
     private boolean isAdmin(String name,String password)
     {
         ResultSet set=adminDAO.query("Name",name,"Password",password);
+
+        boolean returnValue;
+        try
+        {
+            returnValue=set.next();
+        }
+        catch (SQLException e)
+        {
+            getLogger().error("Error in next()",e);
+            throw new RuntimeException();
+        }
+        return returnValue;
+    }
+
+    /**
+     * 是否是租户
+     */
+    private boolean isTenant(String name)
+    {
+        ResultSet set=tenantDAO.query("Name",name);
 
         boolean returnValue;
         try

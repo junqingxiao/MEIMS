@@ -14,6 +14,8 @@ public class AdminManagerTest
     {
         AdminManager adminManager=new AdminManager();
 
-        System.out.println(adminManager.getTenantNumber());
+        adminManager.updateTenant("c","ccc","cc","cccc");
+
+        adminManager.close();
     }
 }

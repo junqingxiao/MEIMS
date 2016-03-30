@@ -185,7 +185,7 @@ abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     @Override
     public final void update(String name1,Object value1,String name2,Object value2,int no)
     {
-        String sql="update "+getClassName()+" set "+name1+"='"+value1+"' and "+name2+"='"+value2+"' where No="+no;
+        String sql="update "+getClassName()+" set "+name1+"='"+value1+"' , "+name2+"='"+value2+"' where No="+no;
         executeUpdate(sql);
     }
 
@@ -195,7 +195,7 @@ abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     @Override
     public final void update(String name1,Object value1,String name2,Object value2,String name3,Object value3,int no)
     {
-        String sql="update "+getClassName()+" set "+name1+"='"+value1+"' and "+name2+"='"+value2+"' and "+name3+"='"+value3+"' where No="+no;
+        String sql="update "+getClassName()+" set "+name1+"='"+value1+"' , "+name2+"='"+value2+"' , "+name3+"='"+value3+"' where No="+no;
         executeUpdate(sql);
     }
 

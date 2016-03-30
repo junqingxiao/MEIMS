@@ -17,6 +17,16 @@ public class TenantManageAction extends CommonAction
         return list;
     }
 
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public final String execute() throws Exception
     {
         AdminManager adminManager=new AdminManager();

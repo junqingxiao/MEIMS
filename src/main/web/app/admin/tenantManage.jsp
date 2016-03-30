@@ -25,18 +25,18 @@
 <div class="row">
     <div class="col-md-8">
         <div class="panel panel-default chat">
-            <div class="panel-heading" id="accordion"><span class="glyphicon glyphicon-th"></span> 租户</div>
+            <div class="panel-heading" id="accordion"><span class="glyphicon glyphicon-th"></span> 租户<small id="message" class="pull-right warning"><s:property value="message" /></small></div>
             <div class="panel-body">
                 <ul>
                     <s:iterator value="list" status="st">
                     <li>
                         <div class="chat-body">
                             <div class="header" >
-                                <strong class="primary-font" ><input type="text" value=<s:property value="name" /> ></strong>
-                                <small class="text-muted"><input type="text" value=<s:property value="password" /> ></small>
+                                <strong class="primary-font" ><input type="text" value=<s:property value="name" /> readonly></strong>
+                                <small class="text-muted"><input type="text" value=<s:property value="password" /> readonly></small>
                                 <!--todo-->
                                 <div class="pull-right action-buttons">
-                                    <a href="#" class="pencil"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="#" class="pencil"><span class="glyphicon glyphicon-pencil" onclick="updateTenantCheck(this)"></span></a>
                                     <a href="#" class="trash"><span  class="glyphicon glyphicon-trash"  onclick="deleteTenant(this)"></span></a>
                                 </div>
                             </div>

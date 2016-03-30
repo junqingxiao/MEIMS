@@ -34,5 +34,9 @@
         <action name="tenantDelete" class="action.app.admin.TenantDeleteAction">
             <result type="redirect">/tenantManage</result>
         </action>
+        <action name="tenantUpdate" class="action.app.admin.TenantUpdateAction">
+            <result name="success" type="redirect">/tenantManage</result>
+            <result name="error" type="redirect">/tenantManage?message=${message}</result>
+        </action>
     </package>
 </struts>

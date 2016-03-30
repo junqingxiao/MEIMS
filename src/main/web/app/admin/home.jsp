@@ -31,6 +31,7 @@
         //跳转overall
         function overall()
         {
+            //todo 更多的模块之后active都要改
             $('#overallTab').addClass('active');
             $('#tenantManageTab').removeClass('active');
             var xmlhttp=new XMLHttpRequest();
@@ -78,6 +79,47 @@
             }
             xmlhttp.open("get","tenantDelete?name="+name+"&password="+password,true);
             xmlhttp.send();
+        }
+
+        //修改租户信息
+        function updateTenant(span)
+        {
+            //获得即时的值
+            var name=$(span).parent().parent().prev().prev().children(":first").get(0).value;
+            var password=$(span).parent().parent().prev().children(":first").get(0).value;
+            //获得原来的值(在chrome中;ie中是即时的值)
+            var oldName=$(span).parent().parent().prev().prev().children(":first").attr("value");
+            var oldPassword=$(span).parent().parent().prev().children(":first").attr("value");
+
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("main").innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("get","tenantUpdate?name="+name+"&password="+password+"&oldName="+oldName+"&oldPassword="+oldPassword,true);
+            xmlhttp.send();
+        }
+
+        //修改租户信息check
+        function updateTenantCheck(span)
+        {
+            var oldName=$(span).parent().parent().prev().prev().children(":first").attr("value");
+            var oldPassword=$(span).parent().parent().prev().children(":first").attr("value");
+
+            //input可编辑
+            $(span).parent().parent().prev().prev().children(":first").removeAttr("readonly");
+            $(span).parent().parent().prev().children(":first").removeAttr("readonly");
+            //禁止删除 增加确认取消
+            $(span).parent().parent().html("<a href='#' class='pencil'><span class='glyphicon glyphicon-ok' onclick='updateTenant(this)'></span></a> " +
+                    "<a href='#' class='trash'><span class='glyphicon glyphicon-remove' onclick='tenantManage()'></span></a> "+
+                    "<a href='#' class='trash'><span class='glyphicon glyphicon-trash'></span></a> ");
+            //将旧的信息存入隐藏的字段中
+            $("#oldName").attr("value",oldName);
+            $("#oldPassword").attr("value",oldPassword);
         }
     </script>
 
