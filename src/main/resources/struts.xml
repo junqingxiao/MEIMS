@@ -24,23 +24,23 @@
         </action>
     </package>
 
-    <package name="Admin" extends="default">
+    <package name="admin" namespace="/admin" extends="default">
         <action name="overall" class="action.app.admin.OverallAction">
-            <result>app/admin/overall.jsp</result>
+            <result>/app/admin/overall.jsp</result>
         </action>
         <action name="tenantManage" class="action.app.admin.TenantManageAction">
-            <result>app/admin/tenantManage.jsp</result>
+            <result>/app/admin/tenantManage.jsp</result>
         </action>
         <action name="tenantDelete" class="action.app.admin.TenantDeleteAction">
-            <result type="redirect">/tenantManage</result>
+            <result type="redirect">admin/tenantManage</result>
         </action>
         <action name="tenantUpdate" class="action.app.admin.TenantUpdateAction">
-            <result name="success" type="redirect">/tenantManage</result>
-            <result name="error" type="redirect">/tenantManage?message=${message}</result>
+            <result name="success" type="redirect">admin/tenantManage</result>
+            <result name="error" type="redirect">admintenantManage?message=${message}</result>
         </action>
         <action name="tenantAdd" class="action.app.admin.TenantAddAction">
-            <result name="success" type="redirect">/tenantManage</result>
-            <result name="error" type="redirect">/tenantManage?message=${message}</result>
+            <result name="success" type="redirect">admin/tenantManage</result>
+            <result name="error" type="redirect">admin/tenantManage?message=${message}</result>
         </action>
     </package>
 </struts>

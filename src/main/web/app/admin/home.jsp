@@ -25,7 +25,7 @@
                 document.getElementById("main").innerHTML=xmlhttp.responseText;
             }
         }
-        xmlhttp.open("get","overall",true);
+        xmlhttp.open("get","admin/overall",true);
         xmlhttp.send();
 
         //跳转overall
@@ -42,7 +42,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","overall",true);
+            xmlhttp.open("get","admin/overall",true);
             xmlhttp.send();
         }
 
@@ -59,7 +59,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","tenantManage",true);
+            xmlhttp.open("get","admin/tenantManage",true);
             xmlhttp.send();
         }
 
@@ -77,7 +77,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","tenantDelete?name="+name+"&password="+password,true);
+            xmlhttp.open("get","admin/tenantDelete?name="+name+"&password="+password,true);
             xmlhttp.send();
         }
 
@@ -100,7 +100,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","tenantUpdate?name="+name+"&password="+password+"&oldName="+oldName+"&oldPassword="+oldPassword,true);
+            xmlhttp.open("get","admin/tenantUpdate?name="+name+"&password="+password+"&oldName="+oldName+"&oldPassword="+oldPassword,true);
             xmlhttp.send();
         }
 
@@ -121,8 +121,8 @@
         {
             $("#addDiv").html('<li>'+'<div class="chat-body">'+
                                         '<div class="header" >'+
-                                            '<strong class="primary-font" ><input type="text"></strong>'+
-                                            '<small class="text-muted"><input type="text"></small>'+
+                                            '<strong class="primary-font" ><input type="text" placeholder="账号"></strong>'+
+                                            '<small class="text-muted"><input type="text" placeholder="密码"></small>'+
                                             '<div class="pull-right action-buttons">'+
                                                 '<a href="#" class="pencil"><span class="glyphicon glyphicon-ok" onclick="addTenant(this)"></span></a>'+
                                                 '<a href="#" class="remove"><span class="glyphicon glyphicon-remove" onclick="tenantManage()"></span></a>'+
@@ -147,7 +147,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","tenantAdd?name="+name+"&password="+password,true);
+            xmlhttp.open("get","admin/tenantAdd?name="+name+"&password="+password,true);
             xmlhttp.send();
         }
 
