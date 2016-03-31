@@ -189,8 +189,6 @@
                                                 '<span class="glyphicon glyphicon-edit"></span> 修改账号'+
                                             '</a>');
             }
-
-
         }
 
         //左侧边栏修改账号确认
@@ -208,6 +206,43 @@
             }
             xmlhttp.open("get","app/admin/changeAccount?name="+name,true);
             xmlhttp.send();
+        }
+
+        //显示子菜单
+        function showUpdatePassword()
+        {
+            if($("#updatePasswordInput").length == 0)
+            {//还未展开
+                $("#updatePasswordLi").html( '<a href="#" onclick="showUpdatePassword()">'+
+                        '<span class="glyphicon glyphicon-edit"></span> 修改密码'+
+                        '</a>'+
+                        '<ul class="children">'+
+                        '<li>'+
+                        '<a href="#">'+
+                        '<input id="updatePasswordInput" type="text" placeholder="新密码"><span class="glyphicon glyphicon-ok" onclick="updatePassword()"></span>'+
+                        '</a>'+
+                        '</li>'+
+                        '</ul>');
+            }
+            else
+            {
+                $("#updatePasswordLi").html( '<a href="#" onclick="showUpdatePassword()">'+
+                        '<span class="glyphicon glyphicon-edit"></span> 修改密码'+
+                        '</a>');
+            }
+        }
+
+        //左侧边栏修改密码确认
+        function updatePassword()
+        {
+            var password=$("#updatePasswordInput").get(0).value;
+
+            xmlhttp.open("get","app/admin/changePassword?password="+password,true);
+            xmlhttp.send();
+
+            $("#updatePasswordLi").html('<a href="#" onclick="showUpdatePassword()">'+
+                    '<span class="glyphicon glyphicon-edit"></span> 修改密码'+
+                    '</a>');
         }
     </script>
 
@@ -229,6 +264,11 @@
         <li class="parent" id="updateAccountLi">
             <a href="#" onclick="showUpdateAccount()">
                 <span class="glyphicon glyphicon-edit"></span> 修改账号
+            </a>
+        </li>
+        <li class="parent" id="updatePasswordLi">
+            <a href="#" onclick="showUpdatePassword()">
+                <span class="glyphicon glyphicon-edit"></span> 修改密码
             </a>
         </li>
     </ul>

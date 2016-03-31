@@ -47,5 +47,7 @@
             <!--todo 等识别session自动登录写完以后可以考虑转到登录界面-->
             <result name="error">accountErrorLi.jsp</result>
         </action>
+        <action name="changePassword" class="action.app.admin.ChangePasswordAction">
+        </action>
     </package>
 </struts>

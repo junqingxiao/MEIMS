@@ -41,7 +41,7 @@ public class ChangeAccountAction extends CommonAction
         {
             //这里注意要修改sessionName
             setSessionName(name);
-            getLogger().info(getSessionName()+" update it`s accout.");
+            getLogger().info(getSessionName()+" update it`s account.");
 
             //应用日志处理
             Log4admin log4admin=new Log4admin();

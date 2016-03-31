@@ -31,6 +31,14 @@ public class AdminManager extends AbstractManager
     }
 
     /**
+     * 修改 admin 的密码
+     */
+    public final void updateAdminPassword(String oldName,String password)
+    {
+        adminDAO.update("password",password,adminDAO.getId(oldName));
+    }
+
+    /**
      * 修改 admin 的账户
      * 先查看是否重名
      */
