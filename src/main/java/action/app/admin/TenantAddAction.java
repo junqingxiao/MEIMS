@@ -43,7 +43,7 @@ public class TenantAddAction extends CommonAction
         else
         {
             //新建一个schema
-            adminManager.createTenantSchema(adminManager.getId(name,password));
+            adminManager.createTenantSchema(adminManager.getTenantId(name,password));
 
             getLogger().info(getSessionName()+" insert a tenant.");
 

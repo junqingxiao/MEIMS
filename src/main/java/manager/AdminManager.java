@@ -31,9 +31,27 @@ public class AdminManager extends AbstractManager
     }
 
     /**
+     * 修改 admin 的账户
+     * 先查看是否重名
+     */
+    public final boolean updateAdminAccount(String oldName,String name)
+    {
+        if((isTenant(name) || isAdmin(name)) && !oldName.equals(name))
+        {
+            //新改的名字是已经存在的,这里加上了admin的判断
+            return true;
+        }
+        else
+        {
+            adminDAO.update("name",name,adminDAO.getId(oldName));
+        }
+        return false;
+    }
+
+    /**
      * 获得id
      */
-    public final int getId(String name,String password)
+    public final int getTenantId(String name,String password)
     {
         return tenantDAO.getId(name,password);
     }
@@ -60,8 +78,8 @@ public class AdminManager extends AbstractManager
      */
     public final boolean addTenant(String name,String password)
     {
-        if (isTenant(name))
-        {//新改的名字是已经存在的
+        if (isTenant(name) || isAdmin(name))
+        {//新改的名字是已经存在的,这里加上了admin的判断
             return true;
         }
         else
@@ -76,8 +94,8 @@ public class AdminManager extends AbstractManager
      */
     public final boolean updateTenant(String oldName,String oldPassword,String name,String password)
     {
-        if (isTenant(name) && !oldName.equals(name))
-        {//新改的名字是已经存在的
+        if ((isTenant(name) || isAdmin(name))&& !oldName.equals(name))
+        {//新改的名字是已经存在的,这里加上了admin的判断
             return true;
         }
         else
@@ -203,6 +221,26 @@ public class AdminManager extends AbstractManager
     private boolean isAdmin(String name,String password)
     {
         ResultSet set=adminDAO.query("Name",name,"Password",password);
+
+        boolean returnValue;
+        try
+        {
+            returnValue=set.next();
+        }
+        catch (SQLException e)
+        {
+            getLogger().error("Error in next()",e);
+            throw new RuntimeException();
+        }
+        return returnValue;
+    }
+
+    /**
+     *是否是超级管理员
+     */
+    private boolean isAdmin(String name)
+    {
+        ResultSet set=adminDAO.query("Name",name);
 
         boolean returnValue;
         try

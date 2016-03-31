@@ -26,8 +26,8 @@
     <div class="col-md-8">
         <div class="panel panel-default chat">
             <div class="panel-heading" id="accordion">
-                <!--todo 警告的样式-->
-                <span class="glyphicon glyphicon-th"></span> 租户<span  class="glyphicon glyphicon-plus pull-right" id="addIcon" onclick="addTenantCheck()"></span><small id="message" class="pull-right warning"><s:property value="message" /> </small >
+                <!--todo 红色感叹号-->
+                <span class="glyphicon glyphicon-list"></span> 租户<span  class="glyphicon glyphicon-plus pull-right" id="addIcon" onclick="addTenantCheck()"></span><small id="message" class="pull-right warning"><s:property value="message" /> </small >
             </div>
             <div class="panel-body">
                 <ul>

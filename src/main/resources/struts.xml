@@ -20,27 +20,32 @@
         <action name="login" class="action.account.LoginAction">
             <result name="admin">app/admin/home.jsp</result>
             <result name="tenant">error/error.jsp</result>
-            <result name="nobody" type="redirect">account/login.jsp</result>
+            <result name="nobody">account/login.jsp</result>
         </action>
     </package>
 
-    <package name="admin" namespace="/admin" extends="default">
+    <package name="app.admin" namespace="/app/admin" extends="default">
         <action name="overall" class="action.app.admin.OverallAction">
-            <result>/app/admin/overall.jsp</result>
+            <result>overall.jsp</result>
         </action>
         <action name="tenantManage" class="action.app.admin.TenantManageAction">
-            <result>/app/admin/tenantManage.jsp</result>
+            <result>tenantManage.jsp</result>
         </action>
         <action name="tenantDelete" class="action.app.admin.TenantDeleteAction">
-            <result type="redirect">admin/tenantManage</result>
+            <result type="redirect">app/admin/tenantManage</result>
         </action>
         <action name="tenantUpdate" class="action.app.admin.TenantUpdateAction">
-            <result name="success" type="redirect">admin/tenantManage</result>
-            <result name="error" type="redirect">admintenantManage?message=${message}</result>
+            <result name="success" type="redirect">app/admin/tenantManage</result>
+            <result name="error" type="redirect">app/admin/tenantManage?message=${message}</result>
         </action>
         <action name="tenantAdd" class="action.app.admin.TenantAddAction">
-            <result name="success" type="redirect">admin/tenantManage</result>
-            <result name="error" type="redirect">admin/tenantManage?message=${message}</result>
+            <result name="success" type="redirect">app/admin/tenantManage</result>
+            <result name="error" type="redirect">app/admin/tenantManage?message=${message}</result>
+        </action>
+        <action name="changeAccount" class="action.app.admin.ChangeAccountAction">
+            <result name="success">accountSuccessLi.jsp</result>
+            <!--todo 等识别session自动登录写完以后可以考虑转到登录界面-->
+            <result name="error">accountErrorLi.jsp</result>
         </action>
     </package>
 </struts>

@@ -25,7 +25,7 @@
                 document.getElementById("main").innerHTML=xmlhttp.responseText;
             }
         }
-        xmlhttp.open("get","admin/overall",true);
+        xmlhttp.open("get","app/admin/overall",true);
         xmlhttp.send();
 
         //跳转overall
@@ -42,7 +42,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","admin/overall",true);
+            xmlhttp.open("get","app/admin/overall",true);
             xmlhttp.send();
         }
 
@@ -59,7 +59,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","admin/tenantManage",true);
+            xmlhttp.open("get","app/admin/tenantManage",true);
             xmlhttp.send();
         }
 
@@ -77,7 +77,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","admin/tenantDelete?name="+name+"&password="+password,true);
+            xmlhttp.open("get","app/admin/tenantDelete?name="+name+"&password="+password,true);
             xmlhttp.send();
         }
 
@@ -100,7 +100,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","admin/tenantUpdate?name="+name+"&password="+password+"&oldName="+oldName+"&oldPassword="+oldPassword,true);
+            xmlhttp.open("get","app/admin/tenantUpdate?name="+name+"&password="+password+"&oldName="+oldName+"&oldPassword="+oldPassword,true);
             xmlhttp.send();
         }
 
@@ -147,7 +147,7 @@
                     document.getElementById("main").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("get","admin/tenantAdd?name="+name+"&password="+password,true);
+            xmlhttp.open("get","app/admin/tenantAdd?name="+name+"&password="+password,true);
             xmlhttp.send();
         }
 
@@ -166,6 +166,49 @@
             $(span).parent().parent().html("<a href='#' class='pencil'><span class='glyphicon glyphicon-pencil' onclick='updateTenantCheck(this)'></span></a>" +
                     "<a href='#' class='trash'><span class='glyphicon glyphicon-trash' onclick='deleteTenant(this)'></span></a> ");
         }
+
+        //显示子菜单
+        function showUpdateAccount()
+        {
+            if($("#updateAccountInput").length == 0)
+            {//还未展开
+                $("#updateAccountLi").html( '<a href="#" onclick="showUpdateAccount()">'+
+                                                '<span class="glyphicon glyphicon-edit"></span> 修改账号'+
+                                            '</a>'+
+                                            '<ul class="children">'+
+                                                '<li>'+
+                                                    '<a href="#">'+
+                                                        '<input id="updateAccountInput" type="text" placeholder="新账号"><span class="glyphicon glyphicon-ok" onclick="updateAccount()"></span>'+
+                                                    '</a>'+
+                                                '</li>'+
+                                            '</ul>');
+            }
+            else
+            {
+                $("#updateAccountLi").html( '<a href="#" onclick="showUpdateAccount()">'+
+                                                '<span class="glyphicon glyphicon-edit"></span> 修改账号'+
+                                            '</a>');
+            }
+
+
+        }
+
+        //左侧边栏修改账号确认
+        function updateAccount()
+        {
+            var name=$("#updateAccountInput").get(0).value;
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("updateAccountLi").innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("get","app/admin/changeAccount?name="+name,true);
+            xmlhttp.send();
+        }
     </script>
 
     <link rel="stylesheet" type="text/css"  href="css/style.css">
@@ -181,8 +224,13 @@
     </form>
     <ul class="nav menu">
         <li class="active" id="overallTab"><a href="#" onclick="overall()"><span class="glyphicon glyphicon-dashboard"></span> 总览</a></li>
-        <li id="tenantManageTab"><a href="#" onclick="tenantManage()"><span class="glyphicon glyphicon-th"></span> 租户管理</a></li>
+        <li id="tenantManageTab"><a href="#" onclick="tenantManage()"><span class="glyphicon glyphicon-list"></span> 租户管理</a></li>
         <li role="presentation" class="divider"></li>
+        <li class="parent" id="updateAccountLi">
+            <a href="#" onclick="showUpdateAccount()">
+                <span class="glyphicon glyphicon-edit"></span> 修改账号
+            </a>
+        </li>
     </ul>
 </div><!--/.sidebar-->
 

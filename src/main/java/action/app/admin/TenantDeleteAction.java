@@ -26,7 +26,7 @@ public class TenantDeleteAction extends CommonAction
         AdminManager adminManager=new AdminManager();
 
         //删除对应的schema
-        adminManager.dropTenantSchema(adminManager.getId(name,password));
+        adminManager.dropTenantSchema(adminManager.getTenantId(name,password));
 
         adminManager.deleteTenant(name,password);
 
