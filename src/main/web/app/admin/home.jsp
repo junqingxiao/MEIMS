@@ -107,19 +107,64 @@
         //修改租户信息check
         function updateTenantCheck(span)
         {
-            var oldName=$(span).parent().parent().prev().prev().children(":first").attr("value");
-            var oldPassword=$(span).parent().parent().prev().children(":first").attr("value");
-
             //input可编辑
             $(span).parent().parent().prev().prev().children(":first").removeAttr("readonly");
             $(span).parent().parent().prev().children(":first").removeAttr("readonly");
             //禁止删除 增加确认取消
             $(span).parent().parent().html("<a href='#' class='pencil'><span class='glyphicon glyphicon-ok' onclick='updateTenant(this)'></span></a> " +
-                    "<a href='#' class='trash'><span class='glyphicon glyphicon-remove' onclick='tenantManage()'></span></a> "+
+                    "<a href='#' class='remove'><span class='glyphicon glyphicon-remove' onclick='updateTenantCancel(this)'></span></a> "+
                     "<a href='#' class='trash'><span class='glyphicon glyphicon-trash'></span></a> ");
-            //将旧的信息存入隐藏的字段中
-            $("#oldName").attr("value",oldName);
-            $("#oldPassword").attr("value",oldPassword);
+        }
+
+        //添加租户check
+        function addTenantCheck()
+        {
+            $("#addDiv").html('<li>'+'<div class="chat-body">'+
+                                        '<div class="header" >'+
+                                            '<strong class="primary-font" ><input type="text"></strong>'+
+                                            '<small class="text-muted"><input type="text"></small>'+
+                                            '<div class="pull-right action-buttons">'+
+                                                '<a href="#" class="pencil"><span class="glyphicon glyphicon-ok" onclick="addTenant(this)"></span></a>'+
+                                                '<a href="#" class="remove"><span class="glyphicon glyphicon-remove" onclick="tenantManage()"></span></a>'+
+                                            '</div>'+
+                                        '</div>'+
+                                     '</div>'+
+                             '</li>');
+        }
+
+        //添加租户
+        function addTenant(span)
+        {
+            //获得即时的值
+            var name=$(span).parent().parent().prev().prev().children(":first").get(0).value;
+            var password=$(span).parent().parent().prev().children(":first").get(0).value;
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("main").innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("get","tenantAdd?name="+name+"&password="+password,true);
+            xmlhttp.send();
+        }
+
+        //取消动作
+        function updateTenantCancel(span)
+        {
+            var oldName=$(span).parent().parent().prev().prev().children(":first").attr("value");
+            var oldPassword=$(span).parent().parent().prev().children(":first").attr("value");
+            //设置为以前的值
+            $(span).parent().parent().prev().prev().children(":first").val(oldName);
+            $(span).parent().parent().prev().children(":first").val(oldPassword);
+
+            $(span).parent().parent().prev().prev().children(":first").attr("readonly","readonly");
+            $(span).parent().parent().prev().children(":first").attr("readonly","readonly");
+
+            $(span).parent().parent().html("<a href='#' class='pencil'><span class='glyphicon glyphicon-pencil' onclick='updateTenantCheck(this)'></span></a>" +
+                    "<a href='#' class='trash'><span class='glyphicon glyphicon-trash' onclick='deleteTenant(this)'></span></a> ");
         }
     </script>
 

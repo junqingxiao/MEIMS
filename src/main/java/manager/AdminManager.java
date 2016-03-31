@@ -31,6 +31,46 @@ public class AdminManager extends AbstractManager
     }
 
     /**
+     * 获得id
+     */
+    public final int getId(String name,String password)
+    {
+        return tenantDAO.getId(name,password);
+    }
+
+    /**
+     * 根据id新建schema
+     */
+    public final void createTenantSchema(int id)
+    {
+        tenantDAO.createSchema(id);
+    }
+
+    /**
+     * 删除schema
+     */
+    public final void dropTenantSchema(int id)
+    {
+        tenantDAO.dropScheme(id);
+    }
+
+    /**
+     *先判断name是否存在 再添加
+     * @return 新的name是否已存在
+     */
+    public final boolean addTenant(String name,String password)
+    {
+        if (isTenant(name))
+        {//新改的名字是已经存在的
+            return true;
+        }
+        else
+        {
+            tenantDAO.insert(name,password);
+        }
+        return false;
+    }
+    /**
      *根据旧的name password更新
      * @return 新的name是否已存在
      */
@@ -42,20 +82,7 @@ public class AdminManager extends AbstractManager
         }
         else
         {
-            ResultSet set=tenantDAO.query("name",oldName,"password",oldPassword);
-
-            try
-            {
-                set.next();
-                tenantDAO.update("name",name,"password",password,set.getInt(1));
-                getLogger().info("updated tenant.");
-
-            }
-            catch (SQLException e)
-            {
-                getLogger().error("Error in update tenant.",e);
-                throw new RuntimeException();
-            }
+            tenantDAO.update("name",name,"password",password,tenantDAO.getId(oldName,oldPassword));
         }
         return false;
     }
@@ -70,6 +97,7 @@ public class AdminManager extends AbstractManager
     /**
      * 获得tenant的列表
      * @return 一个tenant对象的list
+     * 这里按主键倒序排列 1在最后面
      */
     public final List<Tenant> getTenant()
     {
@@ -85,7 +113,7 @@ public class AdminManager extends AbstractManager
                 tenant.setName(set.getString(2));
                 tenant.setPassword(set.getString(3));
 
-                list.add(tenant);
+                list.add(0,tenant);
             }
             getLogger().info("got tenant.");
         }

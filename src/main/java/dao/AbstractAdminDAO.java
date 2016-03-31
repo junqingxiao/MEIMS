@@ -200,6 +200,28 @@ abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     }
 
     /**
+     * 创建schema
+     */
+    public final void createSchema(int id)
+    {
+        String sql="create database tenant_"+id;
+
+        executeUpdate(sql);
+        getLogger().info("create schema:tenant_"+id+".");
+    }
+
+    /**
+     * 删除SCHEMA
+     */
+    public final void dropScheme(int id)
+    {
+        String sql="drop database tenant_"+id;
+
+        executeUpdate(sql);
+        getLogger().info("drop schema:tenant_"+id+".");
+    }
+
+    /**
      *带异常检测的查询
      */
     private ResultSet executeQuery(String sql)

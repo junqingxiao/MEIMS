@@ -518,12 +518,35 @@ h1.page-header {
     color: #9fadbb;
 }
 
+.chat-body a.remove .glyphicon
+{
+    display: inline-block;
+    color: #9fadbb;
+}
+
 .chat-body a.pencil .glyphicon:hover {
     color: #777777;
 }
 
 .chat-body a.trash .glyphicon:hover {
     color: #ef4040;
+}
+
+.chat-body a.remove .glyphicon:hover {
+    color: #ef4040;
+}
+
+#addIcon
+{
+    margin-top: 12px;
+    margin-right: 18px;
+    display: inline-block;
+    color: #9fadbb;
+}
+
+#addIcon:hover
+{
+    color: #1d73cd;
 }
 
 /*List Widget*/

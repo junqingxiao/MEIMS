@@ -2,6 +2,8 @@ package manager;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,7 +16,7 @@ public class AdminManagerTest
     {
         AdminManager adminManager=new AdminManager();
 
-        adminManager.updateTenant("c","ccc","cc","cccc");
+        List list= adminManager.getTenant();
 
         adminManager.close();
     }

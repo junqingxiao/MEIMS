@@ -24,7 +24,12 @@ public class TenantDeleteAction extends CommonAction
     public String execute() throws Exception
     {
         AdminManager adminManager=new AdminManager();
+
+        //删除对应的schema
+        adminManager.dropTenantSchema(adminManager.getId(name,password));
+
         adminManager.deleteTenant(name,password);
+
         adminManager.close();
 
         getLogger().info(getSessionName()+" delete a tenant.");

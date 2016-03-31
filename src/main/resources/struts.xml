@@ -38,5 +38,9 @@
             <result name="success" type="redirect">/tenantManage</result>
             <result name="error" type="redirect">/tenantManage?message=${message}</result>
         </action>
+        <action name="tenantAdd" class="action.app.admin.TenantAddAction">
+            <result name="success" type="redirect">/tenantManage</result>
+            <result name="error" type="redirect">/tenantManage?message=${message}</result>
+        </action>
     </package>
 </struts>
