@@ -22,6 +22,22 @@ public class TenantUpdateAction extends CommonAction
         return message;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getOldName() {
+        return oldName;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }

@@ -6,6 +6,4 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<a href="#" onclick="showUpdateAccount()">
-    <span class="glyphicon glyphicon-edit"></span> 修改账号
-</a>
+<a href="#" onclick="showUpdateAccount()"><span class="glyphicon glyphicon-edit"></span> 修改账号</a>

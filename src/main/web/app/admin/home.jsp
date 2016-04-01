@@ -85,7 +85,7 @@
             {
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
                 {
-                    document.getElementById("main").innerHTML=xmlhttp.responseText;
+                    $(span).parent().parent().parent().parent().parent().html(xmlhttp.responseText);
                 }
             }
             xmlhttp.open("get","app/admin/tenantUpdate?name="+name+"&password="+password+"&oldName="+oldName+"&oldPassword="+oldPassword,true);
@@ -100,7 +100,7 @@
             $(span).parent().parent().prev().children(":first").removeAttr("readonly");
             //禁止删除 增加确认取消
             $(span).parent().parent().html("<a href='#' class='pencil'><span class='glyphicon glyphicon-ok' onclick='updateTenant(this)'></span></a> " +
-                    "<a href='#' class='remove'><span class='glyphicon glyphicon-remove' onclick='updateTenantCancel(this)'></span></a> "+
+                    "<a href='#' class='remove'><span class='glyphicon glyphicon-remove' onclick='tenantManage()'></span></a> "+
                     "<a href='#' class='trash'><span class='glyphicon glyphicon-trash'></span></a> ");
         }
 
@@ -112,8 +112,8 @@
                                             '<strong class="primary-font" ><input type="text" placeholder="账号"></strong>'+
                                             '<small class="text-muted"><input type="text" placeholder="密码"></small>'+
                                             '<div class="pull-right action-buttons">'+
-                                                '<a href="#" class="pencil"><span class="glyphicon glyphicon-ok" onclick="addTenant(this)"></span></a>'+
-                                                '<a href="#" class="remove"><span class="glyphicon glyphicon-remove" onclick="tenantManage()"></span></a>'+
+                                                '<a href="#" class="pencil"><span class="glyphicon glyphicon-ok" onclick="addTenant(this)"></span></a> '+
+                                                '<a href="#" class="remove"><span class="glyphicon glyphicon-remove" onclick="tenantManage()"></span></a> '+
                                             '</div>'+
                                         '</div>'+
                                      '</div>'+
@@ -132,27 +132,11 @@
             {
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
                 {
-                    document.getElementById("main").innerHTML=xmlhttp.responseText;
+                    $(span).parent().parent().parent().parent().parent().html(xmlhttp.responseText);
                 }
             }
             xmlhttp.open("get","app/admin/tenantAdd?name="+name+"&password="+password,true);
             xmlhttp.send();
-        }
-
-        //取消动作
-        function updateTenantCancel(span)
-        {
-            var oldName=$(span).parent().parent().prev().prev().children(":first").attr("value");
-            var oldPassword=$(span).parent().parent().prev().children(":first").attr("value");
-            //设置为以前的值
-            $(span).parent().parent().prev().prev().children(":first").val(oldName);
-            $(span).parent().parent().prev().children(":first").val(oldPassword);
-
-            $(span).parent().parent().prev().prev().children(":first").attr("readonly","readonly");
-            $(span).parent().parent().prev().children(":first").attr("readonly","readonly");
-
-            $(span).parent().parent().html("<a href='#' class='pencil'><span class='glyphicon glyphicon-pencil' onclick='updateTenantCheck(this)'></span></a>" +
-                    "<a href='#' class='trash'><span class='glyphicon glyphicon-trash' onclick='deleteTenant(this)'></span></a> ");
         }
 
         //显示子菜单
@@ -166,7 +150,7 @@
                                             '<ul class="children">'+
                                                 '<li>'+
                                                     '<a href="#">'+
-                                                        '<input id="updateAccountInput" type="text" placeholder="新账号"><span class="glyphicon glyphicon-ok" onclick="updateAccount()"></span>'+
+                                                        '<input id="updateAccountInput" type="text" placeholder="新账号"><span class="glyphicon glyphicon-ok floatOk" onclick="updateAccount()" ></span>'+
                                                     '</a>'+
                                                 '</li>'+
                                             '</ul>');
@@ -207,7 +191,7 @@
                         '<ul class="children">'+
                         '<li>'+
                         '<a href="#">'+
-                        '<input id="updatePasswordInput" type="text" placeholder="新密码"><span class="glyphicon glyphicon-ok" onclick="updatePassword()"></span>'+
+                        '<input id="updatePasswordInput" type="text" placeholder="新密码"><span class="glyphicon glyphicon-ok floatOk" onclick="updatePassword()"></span>'+
                         '</a>'+
                         '</li>'+
                         '</ul>');
@@ -250,14 +234,10 @@
         <li id="tenantManageTab"><a href="#" onclick="tenantManage()"><span class="glyphicon glyphicon-list"></span> 租户管理</a></li>
         <li role="presentation" class="divider"></li>
         <li class="parent" id="updateAccountLi">
-            <a href="#" onclick="showUpdateAccount()">
-                <span class="glyphicon glyphicon-edit"></span> 修改账号
-            </a>
+            <a href="#" onclick="showUpdateAccount()"><span class="glyphicon glyphicon-edit"></span> 修改账号</a>
         </li>
         <li class="parent" id="updatePasswordLi">
-            <a href="#" onclick="showUpdatePassword()">
-                <span class="glyphicon glyphicon-edit"></span> 修改密码
-            </a>
+            <a href="#" onclick="showUpdatePassword()"><span class="glyphicon glyphicon-edit"></span> 修改密码</a>
         </li>
     </ul>
 </div><!--/.sidebar-->

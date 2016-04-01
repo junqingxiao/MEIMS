@@ -30,6 +30,14 @@ public class TenantAddAction extends CommonAction
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public String execute() throws Exception
     {
         AdminManager adminManager=new AdminManager();

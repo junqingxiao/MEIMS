@@ -414,7 +414,7 @@ h3, h4 {
 .sidebar ul.nav li.parent ul li a {
     border: none;
     display:block;
-    padding-left: 30px;
+    padding-left: 1px;
     line-height: 40px;
 }
 
@@ -603,7 +603,18 @@ h1.page-header {
 }
 
 /*返回的消息*/
-#message
+.warning
 {
     color: red;
+}
+
+.warning:hover
+{
+    color: red;
+}
+
+.floatOk
+{
+    float:right;
+    margin-top: 11px;
 }

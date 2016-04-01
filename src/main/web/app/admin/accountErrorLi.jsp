@@ -7,16 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<a href="#">
+<a href="#" onclick="showUpdateAccount()">
     <span class="glyphicon glyphicon-edit"></span> 修改账号
 </a>
 <ul class="children">
     <li>
-        <a href="#" onclick="showUpdateAccount()">
-            <input id="updateAccountInput" type="text" placeholder="新账号"><span class="glyphicon glyphicon-ok" onclick="updateAccount()"></span>
-        </a>
+        <a href="#"><input id="updateAccountInput" type="text" placeholder="新账号"><span class="glyphicon glyphicon-ok floatOk" onclick="updateAccount()"></span><span class="glyphicon glyphicon-exclamation-sign warning floatOk" title=<s:property value="message" />></span></a>
     </li>
-    <li>
-        <s:property value="message" />;<!--todo 红色感叹号-->
-    </li>
-</ul>);
+</ul>

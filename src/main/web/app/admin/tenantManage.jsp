@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <div class="row">
@@ -26,8 +25,8 @@
     <div class="col-md-8">
         <div class="panel panel-default chat">
             <div class="panel-heading" id="accordion">
-                <!--todo 红色感叹号-->
-                <span class="glyphicon glyphicon-list"></span> 租户<span  class="glyphicon glyphicon-plus pull-right" id="addIcon" onclick="addTenantCheck()"></span><small id="message" class="pull-right warning"><s:property value="message" /> </small >
+
+                <span class="glyphicon glyphicon-list"></span> 租户<span  class="glyphicon glyphicon-plus pull-right" id="addIcon" onclick="addTenantCheck()"></span>
             </div>
             <div class="panel-body">
                 <ul>
