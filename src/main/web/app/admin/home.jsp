@@ -16,18 +16,6 @@
     <script src="js/bootstrap.min.js" ></script>
 
     <script>
-        //一开始是overall 界面
-        var xmlhttp=new XMLHttpRequest();
-        xmlhttp.onreadystatechange=function()
-        {
-            if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
-            {
-                document.getElementById("main").innerHTML=xmlhttp.responseText;
-            }
-        }
-        xmlhttp.open("get","app/admin/overall",true);
-        xmlhttp.send();
-
         //跳转overall
         function overall()
         {
@@ -280,3 +268,17 @@
 
 </body>
 </html>
+
+<script>
+    //一开始是overall 界面
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+        {
+            document.getElementById("main").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("get","app/admin/overall",true);
+    xmlhttp.send();
+</script>

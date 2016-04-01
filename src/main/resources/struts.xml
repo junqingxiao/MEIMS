@@ -19,10 +19,20 @@
     <package name="Account" extends="default">
         <action name="login" class="action.account.LoginAction">
             <result name="admin">app/admin/home.jsp</result>
-            <result name="tenant">error/error.jsp</result>
+            <result name="tenant">app/tenant/home.jsp</result>
             <result name="nobody">account/login.jsp</result>
         </action>
     </package>
+
+    <package name="app.tenant" namespace="/app/tenant" extends="default">
+        <action name="overall" class="action.app.tenant.OverallAction">
+            <result>overall.jsp</result>
+        </action>
+        <action name="employeeInfo" class="action.app.tenant.EmployeeInfoAction">
+            <result>employeeInfo.jsp</result>
+        </action>
+    </package>
+
 
     <package name="app.admin" namespace="/app/admin" extends="default">
         <action name="overall" class="action.app.admin.OverallAction">
