@@ -45,11 +45,11 @@
             <result type="redirect">tenantManage</result>
         </action>
         <action name="tenantUpdate" class="action.app.admin.TenantUpdateAction">
-            <result name="success">tenantSuccessLi.jsp</result>
+            <result name="success">tenantUpdateSuccessLi.jsp</result>
             <result name="error">tenantUpdateErrorLi.jsp</result>
         </action>
         <action name="tenantAdd" class="action.app.admin.TenantAddAction">
-            <result name="success">tenantSuccessLi.jsp</result>
+            <result name="success">tenantAddSuccessLi.jsp</result>
             <result name="error">tenantAddErrorLi.jsp</result>
         </action>
         <action name="changeAccount" class="action.app.admin.ChangeAccountAction">

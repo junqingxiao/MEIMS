@@ -28,6 +28,15 @@ abstract class AbstractTenantDAO extends AbstractDAO<MtResultSet>
     }
 
     /**
+     *根据1属性插入一条纪录,主键自增
+     */
+    public final void insert(String name1,Object value1)
+    {
+        String sql="insert into "+getClassName()+"("+name1+") values('"+value1+"')";
+        session.executeUpdate(sql);
+    }
+
+    /**
      *根据2属性插入一条纪录,主键自增
      */
     @Override
@@ -44,6 +53,15 @@ abstract class AbstractTenantDAO extends AbstractDAO<MtResultSet>
     public final void insert(String name1,Object value1,String name2,Object value2,String name3,Object value3)
     {
         String sql="insert into "+getClassName()+"("+name1+","+name2+","+name3+") values('"+value1+"','"+value2+"','"+value3+"')";
+        session.executeUpdate(sql);
+    }
+
+    /**
+     *根据4属性插入一条纪录,主键自增
+     */
+    public final void insert(String name1,Object value1,String name2,Object value2,String name3,Object value3,String name4,Object value4)
+    {
+        String sql="insert into "+getClassName()+"("+name1+","+name2+","+name3+","+name4+") values('"+value1+"','"+value2+"','"+value3+"','"+value4+"')";
         session.executeUpdate(sql);
     }
 

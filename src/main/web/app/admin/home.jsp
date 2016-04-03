@@ -107,17 +107,20 @@
         //添加租户check
         function addTenantCheck()
         {
-            $("#addDiv").html('<li>'+'<div class="chat-body">'+
-                                        '<div class="header" >'+
-                                            '<strong class="primary-font" ><input type="text" placeholder="账号"></strong>'+
-                                            '<small class="text-muted"><input type="text" placeholder="密码"></small>'+
-                                            '<div class="pull-right action-buttons">'+
-                                                '<a href="#" class="pencil"><span class="glyphicon glyphicon-ok" onclick="addTenant(this)"></span></a> '+
-                                                '<a href="#" class="remove"><span class="glyphicon glyphicon-remove" onclick="tenantManage()"></span></a> '+
-                                            '</div>'+
-                                        '</div>'+
-                                     '</div>'+
-                             '</li>');
+            if($("#addDiv").html() == "")
+            {
+                $("#addDiv").html('<li>'+'<div class="chat-body">'+
+                        '<div class="header" >'+
+                        '<strong class="primary-font" ><input type="text" placeholder="账号"></strong>'+
+                        '<small class="text-muted"><input type="text" placeholder="密码"></small>'+
+                        '<div class="pull-right action-buttons">'+
+                        '<a href="#" class="pencil"><span class="glyphicon glyphicon-ok" onclick="addTenant(this)"></span></a> '+
+                        '<a href="#" class="remove"><span class="glyphicon glyphicon-remove" onclick="tenantManage()"></span></a> '+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</li>');
+            }
         }
 
         //添加租户
@@ -132,7 +135,9 @@
             {
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
                 {
-                    $(span).parent().parent().parent().parent().parent().html(xmlhttp.responseText);
+                    var parentLi=$("#addDiv").parent();
+                    $("#addDiv").remove();
+                    parentLi.prepend(xmlhttp.responseText);
                 }
             }
             xmlhttp.open("get","app/admin/tenantAdd?name="+name+"&password="+password,true);

@@ -70,7 +70,7 @@ public class TenantUpdateAction extends CommonAction
 
             //应用日志处理
             Log4admin log4admin=new Log4admin();
-            log4admin.log(getSessionName()+"更新了一个租户.");
+            log4admin.log(getSessionName()+"更新了一个租户,新账户:"+name+".");
             adminManager.close();
             return SUCCESS;
         }

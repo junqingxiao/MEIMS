@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.Iterator;
 
 abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
 {
@@ -16,6 +17,42 @@ abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     private static final String url="jdbc:mysql://localhost:3307/tenant_admin?user=mk&password=123&useUnicode=true&characterEncoding=UTF8";
 
     private Connection connection;
+
+    //每个租户建表的sql语句
+    private static String[] tableSql={
+            "CREATE TABLE employee (\n" +
+            "No INT NOT NULL AUTO_INCREMENT,\n" +
+            "Name VARCHAR(40) NOT NULL,\n" +
+            "EntryDate DATE NOT NULL,\n" +
+            "PNo INT NOT NULL,\n" +
+            "PRIMARY KEY (No)\n" +
+            ");\n",
+            "CREATE TABLE department (\n" +
+            "No INT NOT NULL AUTO_INCREMENT,\n" +
+            "Name VARCHAR(40) NOT NULL,\n" +
+            "PRIMARY KEY (No)\n" +
+            ");",
+            "CREATE TABLE position (\n" +
+            "No INT NOT NULL AUTO_INCREMENT,\n" +
+            "Name VARCHAR(40) NOT NULL,\n" +
+            "Salary INT NOT NULL,\n" +
+            "DNo INT NOT NULL,\n" +
+            "PRIMARY KEY (No),\n" +
+            "UNIQUE KEY index1 ( Name,DNo )\n" +
+            ");",
+            "CREATE TABLE epchange (\n" +
+            "No INT NOT NULL AUTO_INCREMENT,\n" +
+            "ENo INT NOT NULL,\n" +
+            "OPNo INT NOT NULL,\n" +
+            "NPNo INT NOT NULL,\n" +
+            "Date DATE NOT NULL,\n" +
+            "PRIMARY KEY (No)\n" +
+            ");",
+            "ALTER TABLE employee ADD CONSTRAINT fk_employee FOREIGN KEY (PNo) REFERENCES position (No);\n",
+            "ALTER TABLE position ADD CONSTRAINT fk_position FOREIGN KEY (DNo) REFERENCES department (No);\n",
+            "ALTER TABLE epchange ADD CONSTRAINT fk_change FOREIGN KEY (OPNo) REFERENCES position (No);\n",
+            "ALTER TABLE epchange ADD CONSTRAINT fk_change_1 FOREIGN KEY (NPNo) REFERENCES position (No);\n",
+            "ALTER TABLE epchange ADD CONSTRAINT fk_change_2 FOREIGN KEY (ENo) REFERENCES employee (No);\n"};
 
     @Override
     public final void init()
@@ -205,9 +242,19 @@ abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     public final void createSchema(int id)
     {
         String sql="create database tenant_"+id;
+        executeUpdate(sql);
 
+        sql="ALTER DATABASE tenant_"+id+" DEFAULT CHARACTER SET utf8 COLLATE utf8_bin";
         executeUpdate(sql);
         getLogger().info("create schema:tenant_"+id+".");
+
+        sql="use tenant_"+id;
+        executeUpdate(sql);
+
+        for (String aTableSql : tableSql) {
+            executeUpdate(aTableSql);
+        }
+        getLogger().info("create tables in tenant_"+id+".");
     }
 
     /**

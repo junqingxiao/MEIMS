@@ -30,9 +30,7 @@
             </div>
             <div class="panel-body">
                 <ul>
-                    <div id="addDiv">
-
-                    </div>
+                    <div id="addDiv"></div>
                     <s:iterator value="list" status="st">
                     <li>
                         <div class="chat-body">
