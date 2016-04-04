@@ -44,13 +44,13 @@ public class TenantManager extends AbstractManager
             employee.setNo(set.getInt(1));
             employee.setName(set.getString(2));
             //查询position的名字
-            MtResultSet positionSet= positionDAO.query(set.getInt(3));
+            MtResultSet positionSet= positionDAO.query(set.getInt(4));
             positionSet.next();
-            employee.setpName(positionSet.getString(2));
+            employee.setPName(positionSet.getString(2));
             //查询department的名字
             MtResultSet departmentSet=departmentDAO.query(positionSet.getInt(4));
             departmentSet.next();
-            employee.setdName(departmentSet.getString(2));
+            employee.setDName(departmentSet.getString(2));
 
             list.add(0,employee);
         }

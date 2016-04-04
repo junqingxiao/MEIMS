@@ -28,19 +28,19 @@ public class Employee
         this.name = name;
     }
 
-    public String getpName() {
+    public String getPName() {
         return pName;
     }
 
-    public void setpName(String pName) {
+    public void setPName(String pName) {
         this.pName = pName;
     }
 
-    public void setdName(String dName) {
+    public void setDName(String dName) {
         this.dName = dName;
     }
 
-    public String getdName() {
+    public String getDName() {
         return dName;
     }
 }

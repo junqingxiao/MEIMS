@@ -14,7 +14,7 @@ abstract class AbstractTenantDAO extends AbstractDAO<MtResultSet>
     /**
      * 配置文件路径
      */
-    private static final String xmlPath="src/main/resources/MtConfiguration.xml";
+    private static final String xmlPath=AbstractTenantDAO.class.getClassLoader().getResource("MtConfiguration.xml").getPath();
 
     private MtSession session;
 

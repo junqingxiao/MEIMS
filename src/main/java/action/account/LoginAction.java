@@ -5,6 +5,7 @@ package action.account;
  */
 
 import action.common.CommonAction;
+import action.common.Constrants;
 import manager.AdminManager;
 
 public class LoginAction extends CommonAction
@@ -24,6 +25,11 @@ public class LoginAction extends CommonAction
         //将type存入session
         setSessionType(identity);
         setSessionName(name);
+        //如果是tenant 那么存入no
+        if (identity.equals(Constrants.TENANT))
+        {
+            setSessionNo(adminManager.getTenantId(name,password));
+        }
         adminManager.close();
         return identity;
     }

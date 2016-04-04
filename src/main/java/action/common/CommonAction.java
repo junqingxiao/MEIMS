@@ -46,9 +46,11 @@ public class CommonAction extends ActionSupport
 
     protected void setSessionType(String type)
     {
-        ActionContext.getContext().getSession().put("type",type);
+        ActionContext.getContext().getSession().put(Constrants.TYPE,type);
 
     }
 
-    protected void setSessionName(String name){ActionContext.getContext().getSession().put("name",name);}
+    protected void setSessionName(String name){ActionContext.getContext().getSession().put(Constrants.NAME,name);}
+
+    protected void setSessionNo(Integer no){ActionContext.getContext().getSession().put(Constrants.NO,no);}
 }
