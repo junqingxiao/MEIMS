@@ -10,7 +10,7 @@
 
 <div class="row">
     <ol class="breadcrumb">
-        <li><a href="#"><span class="glyphicon glyphicon-th"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-list"></span></a></li>
         <li class="active">员工信息</li>
     </ol>
 </div><!--/.row-->
@@ -30,15 +30,14 @@
             </div>
             <div class="panel-body">
                 <ul>
-                    <div id="addDiv">
-
-                    </div>
+                    <div id="addDiv"></div>
                     <s:iterator value="list" status="st">
                         <li>
                             <div class="chat-body">
                                 <div class="header" >
-                                    <small class="text-muted" ><input type="text" value=<s:property value="name" /> readonly></small>
-                                    <small class="text-muted"><input type="text" value=<s:property value="pName" /> readonly></small>
+                                    <small class="text-muted" ><input class="employeeInput" type="text" value=<s:property value="name" /> readonly></small>
+                                    <small class="text-muted"><input class="employeeInput" type="text" value=<s:property value="pName" /> readonly></small>
+                                    <small class="text-muted"><input class="employeeInput" type="text" value=<s:property value="dName" /> readonly></small>
                                     <div class="pull-right action-buttons">
                                         <a href="#" class="pencil"><span class="glyphicon glyphicon-pencil" onclick="updateTenantCheck(this)"></span></a>
                                         <a href="#" class="trash"><span  class="glyphicon glyphicon-trash"  onclick="deleteTenant(this)"></span></a>

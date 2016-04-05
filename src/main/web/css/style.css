@@ -505,10 +505,16 @@ h1.page-header {
     font-size: 18px;
 }
 
-.chat-body input
+.tenantInput
 {
     border: 0;
     width: 40%;
+}
+
+.employeeInput
+{
+    border: 0;
+    width: 29%;
 }
 
 .chat-body a.pencil .glyphicon
