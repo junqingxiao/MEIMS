@@ -48,6 +48,50 @@
             xmlhttp.open("get","app/tenant/employeeInfo",true);
             xmlhttp.send();
         }
+
+        //添加员工check
+        function addEmployeeCheck()
+        {
+            if($("#addDiv").html() == "")
+            {
+                $("#addDiv").html('<li>'+'<div class="chat-body">'+
+                        '<div class="header" >'+
+                        '<small class="text-muted"><input class="employeeAddInput" type="text" placeholder="姓名"></small>'+
+                        '<small class="text-muted"><input class="employeeAddInput" type="text" placeholder="职位"></small>'+
+                        '<small class="text-muted"><input class="employeeAddInput" type="text" placeholder="部门"></small>'+
+                        '<small class="text-muted"><input class="employeeAddInput" type="date" ></small>'+
+                        '<div class="pull-right action-buttons">'+
+                        '<a href="#" class="pencil"><span class="glyphicon glyphicon-ok" onclick="addEmployee(this)"></span></a> '+
+                        '<a href="#" class="remove"><span class="glyphicon glyphicon-remove" onclick="employeeInfo()"></span></a> '+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</li>');
+            }
+        }
+
+        //添加员工
+        function addEmployee(span)
+        {
+            //获得即时的值
+            var name=$(span).parent().parent().prev().prev().prev().prev().children(":first").get(0).value;
+            var pName=$(span).parent().parent().prev().prev().prev().children(":first").get(0).value;
+            var dName=$(span).parent().parent().prev().prev().children(":first").get(0).value;
+            var date=$(span).parent().parent().prev().children(":first").get(0).value;
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    var parentLi=$("#addDiv").parent();
+                    $("#addDiv").remove();
+                    parentLi.prepend(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/tenant/employeeAdd?name="+name+"&pName="+pName+"&dName="+dName+"&date="+date,true);
+            xmlhttp.send();
+        }
     </script>
 
     <link rel="stylesheet" type="text/css"  href="css/style.css">

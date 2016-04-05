@@ -26,7 +26,7 @@
         <div class="panel panel-default chat">
             <div class="panel-heading" id="accordion">
 
-                <span class="glyphicon glyphicon-list"></span> 员工<span  class="glyphicon glyphicon-plus pull-right" id="addIcon" onclick="addTenantCheck()"></span>
+                <span class="glyphicon glyphicon-list"></span> 员工<span  class="glyphicon glyphicon-plus pull-right" id="addIcon" onclick="addEmployeeCheck()"></span>
             </div>
             <div class="panel-body">
                 <ul>
@@ -38,9 +38,10 @@
                                     <small class="text-muted" ><input class="employeeInput" type="text" value=<s:property value="name" /> readonly></small>
                                     <small class="text-muted"><input class="employeeInput" type="text" value=<s:property value="pName" /> readonly></small>
                                     <small class="text-muted"><input class="employeeInput" type="text" value=<s:property value="dName" /> readonly></small>
+                                    <small class="text-muted"><input class="hidden" type="text" value=<s:property value="no" /> readonly></small>
                                     <div class="pull-right action-buttons">
-                                        <a href="#" class="pencil"><span class="glyphicon glyphicon-pencil" onclick="updateTenantCheck(this)"></span></a>
-                                        <a href="#" class="trash"><span  class="glyphicon glyphicon-trash"  onclick="deleteTenant(this)"></span></a>
+                                        <a href="#" class="pencil"><span class="glyphicon glyphicon-pencil" onclick="updateEmployeeCheck(this)"></span></a>
+                                        <a href="#" class="trash"><span  class="glyphicon glyphicon-trash"  onclick="deleteEmployee(this)"></span></a>
                                     </div>
                                 </div>
                             </div>

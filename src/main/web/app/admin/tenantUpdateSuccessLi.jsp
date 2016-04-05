@@ -10,8 +10,8 @@
 
     <div class="chat-body">
         <div class="header" >
-            <strong class="primary-font" ><input type="text" value=<s:property value="name" /> readonly></strong>
-            <small class="text-muted"><input type="text" value=<s:property value="password" /> readonly></small>
+            <strong class="primary-font" ><input class="tenantInput" type="text" value=<s:property value="name" /> readonly></strong>
+            <small class="text-muted"><input class="tenantInput" type="text" value=<s:property value="password" /> readonly></small>
             <div class="pull-right action-buttons">
                 <a href="#" class="pencil"><span class="glyphicon glyphicon-pencil" onclick="updateTenantCheck(this)"></span></a>
                 <a href="#" class="trash"><span  class="glyphicon glyphicon-trash"  onclick="deleteTenant(this)"></span></a>

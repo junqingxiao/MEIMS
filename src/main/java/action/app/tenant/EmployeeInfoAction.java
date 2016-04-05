@@ -19,7 +19,7 @@ public class EmployeeInfoAction extends CommonAction
 
     public final String execute() throws Exception
     {
-        TenantManager tenantManager=new TenantManager("tenant_26");
+        TenantManager tenantManager=new TenantManager("tenant_"+getSessionNo());
         list=tenantManager.getEmployee();
         tenantManager.close();
         return SUCCESS;

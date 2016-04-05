@@ -10,8 +10,8 @@
 
 <div class="chat-body">
     <div class="header" >
-        <strong class="primary-font" ><input type="text" value=<s:property value="oldName" /> ></strong>
-        <small class="text-muted"><input type="text" value=<s:property value="oldPassword" /> ></small>
+        <strong class="primary-font" ><input class="tenantInput" type="text" value=<s:property value="oldName" /> ></strong>
+        <small class="text-muted"><input class="tenantInput" type="text" value=<s:property value="oldPassword" /> ></small>
         <div class="pull-right action-buttons">
             <a href="#" class="warning"><span class="glyphicon glyphicon-exclamation-sign" title=<s:property value="message" />></span></a>
             <a href='#' class='pencil'><span class='glyphicon glyphicon-ok' onclick='updateTenant(this)'></span></a>

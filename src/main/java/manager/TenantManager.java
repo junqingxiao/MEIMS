@@ -29,6 +29,25 @@ public class TenantManager extends AbstractManager
     }
 
     /**
+     *先判断关系是否合法是否存在 再添加
+     * @return 新的关系是否合法
+     */
+    public final boolean addEmployee(String name, String pName, String dName, java.sql.Date date)
+    {
+        int pNo=isPDLegal(pName,dName);
+        if ( pNo != 0)
+        {//合法
+            employeeDAO.insert(name,date,pNo);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    /**
      * 获得employee的列表
      * @return 一个employee对象的list
      * 这里按主键倒序排列 1在最后面
@@ -56,6 +75,31 @@ public class TenantManager extends AbstractManager
         }
         getLogger().info("got employee.");
         return list;
+    }
+
+    /**
+     * 判断职位名和部门名关系是否合法
+     * @return 职位的no 0表示非法
+     */
+    private int isPDLegal(String pName,String dName)
+    {
+        MtResultSet set= departmentDAO.query("name",dName);
+        if (set.next())
+        {//如果部门表中有这个部门
+            MtResultSet set1=positionDAO.query("name",pName,"dNo",set.getInt(1));
+            if (set1.next())
+            {
+                return set1.getInt(1);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     /**

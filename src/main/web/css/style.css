@@ -517,6 +517,12 @@ h1.page-header {
     width: 29%;
 }
 
+.employeeAddInput
+{
+    border: 0;
+    width: 20%;
+}
+
 .chat-body a.pencil .glyphicon
 {
     display: inline-block;

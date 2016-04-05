@@ -111,8 +111,8 @@
             {
                 $("#addDiv").html('<li>'+'<div class="chat-body">'+
                         '<div class="header" >'+
-                        '<strong class="primary-font" ><input type="text" placeholder="账号"></strong>'+
-                        '<small class="text-muted"><input type="text" placeholder="密码"></small>'+
+                        '<strong class="primary-font" ><input class="tenantInput" type="text" placeholder="账号"></strong>'+
+                        '<small class="text-muted"><input class="tenantInput" type="text" placeholder="密码"></small>'+
                         '<div class="pull-right action-buttons">'+
                         '<a href="#" class="pencil"><span class="glyphicon glyphicon-ok" onclick="addTenant(this)"></span></a> '+
                         '<a href="#" class="remove"><span class="glyphicon glyphicon-remove" onclick="tenantManage()"></span></a> '+

@@ -31,6 +31,10 @@
         <action name="employeeInfo" class="action.app.tenant.EmployeeInfoAction">
             <result>employeeInfo.jsp</result>
         </action>
+        <action name="employeeAdd" class="action.app.tenant.EmployeeAddAction">
+            <result name="success">employeeAddSuccessLi.jsp</result>
+            <result name="error">employeeAddErrorLi.jsp</result>
+        </action>
     </package>
 
 
