@@ -38,6 +38,10 @@
         <action name="employeeDelete" class="action.app.tenant.EmployeeDeleteAction">
             <result type="redirect">employeeInfo</result>
         </action>
+        <action name="employeeUpdate" class="action.app.tenant.EmployeeUpdateAction">
+            <result name="success">employeeUpdateSuccessLi.jsp</result>
+            <result name="error">employeeUpdateErrorLi.jsp</result>
+        </action>
     </package>
 
 

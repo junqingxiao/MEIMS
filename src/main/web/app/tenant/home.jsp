@@ -110,6 +110,42 @@
             xmlhttp.open("get","app/tenant/employeeDelete?name="+name+"&no="+no,true);
             xmlhttp.send();
         }
+
+        //修改员工信息
+        function updateEmployee(span)
+        {
+            //获得即时的值
+            var name=$(span).parent().parent().prev().prev().prev().prev().children(":first").get(0).value;
+            var pName=$(span).parent().parent().prev().prev().prev().children(":first").get(0).value;
+            var dName=$(span).parent().parent().prev().prev().children(":first").get(0).value;
+            //获得id的值
+            var no=$(span).parent().parent().prev().children(":first").get(0).value;
+
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    $(span).parent().parent().parent().parent().parent().html(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/tenant/employeeUpdate?name="+name+"&pName="+pName+"&dName="+dName+"&no="+no,true);
+            xmlhttp.send();
+        }
+
+        //修改员工信息check
+        function updateEmployeeCheck(span)
+        {
+            //input可编辑
+            $(span).parent().parent().prev().prev().prev().prev().children(":first").removeAttr("readonly");
+            $(span).parent().parent().prev().prev().prev().children(":first").removeAttr("readonly");
+            $(span).parent().parent().prev().prev().children(":first").removeAttr("readonly");
+            //禁止删除 增加确认取消
+            $(span).parent().parent().html("<a href='#' class='pencil'><span class='glyphicon glyphicon-ok' onclick='updateEmployee(this)'></span></a> " +
+                    "<a href='#' class='remove'><span class='glyphicon glyphicon-remove' onclick='employeeInfo()'></span></a> "+
+                    "<a href='#' class='trash'><span class='glyphicon glyphicon-trash'></span></a> ");
+        }
     </script>
 
     <link rel="stylesheet" type="text/css"  href="css/style.css">

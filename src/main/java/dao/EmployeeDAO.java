@@ -1,5 +1,7 @@
 package dao;
 
+import org.MtConnector.Session.MtResultSet;
+
 /**
  * @author mk
  */
@@ -20,5 +22,15 @@ public class EmployeeDAO extends AbstractTenantDAO
     public void insert(String name, java.sql.Date entryDate, int pNo)
     {
         insert("Name",name,"EntryDate",entryDate,"PNo",pNo);
+    }
+
+    /**
+     * 由pNo得到no
+     */
+    public int getPNoByNo(int no)
+    {
+        MtResultSet set= query(no);
+        set.next();
+        return set.getInt(4);
     }
 }

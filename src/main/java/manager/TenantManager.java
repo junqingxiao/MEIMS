@@ -29,6 +29,32 @@ public class TenantManager extends AbstractManager
     }
 
     /**
+     * 更新员工信息
+     */
+    public final boolean updateEmployee(String name,String pName,String dName,int no)
+    {
+        int p=isPDLegal(pName,dName);
+        if ( p != 0)
+        {//合法
+            //先得到原来的pNo
+            int oldPNo=employeeDAO.getPNoByNo(no);
+            //更新
+            int dNo=departmentDAO.getNo(dName);
+            int pNo=positionDAO.getNo(pName,dNo);
+            employeeDAO.update("name",name,"pNo",pNo,no);
+            //这里要更新change信息
+
+            java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+            epchangeDAO.insert(no,oldPNo,pNo,date);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /**
      * 根据主键删除员工
      * @param no 主键
      */
@@ -54,7 +80,6 @@ public class TenantManager extends AbstractManager
         {
             return false;
         }
-
     }
 
     /**
