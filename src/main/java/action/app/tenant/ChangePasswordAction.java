@@ -1,7 +1,8 @@
-package action.app.admin;
+package action.app.tenant;
 
 import action.common.CommonAction;
 import filter.log.Log4admin;
+import filter.log.Log4tenant;
 import manager.AdminManager;
 
 /**
@@ -19,16 +20,18 @@ public class ChangePasswordAction extends CommonAction
     {
 
         AdminManager adminManager=new AdminManager();
-        adminManager.updateAdminPassword(getSessionName(),password);
+        adminManager.updateTenantPassword(getSessionName(),password);
         adminManager.close();
 
         getLogger().info(getSessionName()+" update it`s password.");
 
-            //应用日志处理
-            Log4admin log4admin=new Log4admin();
-            log4admin.log("["+getSessionType()+"]  "+getSessionName()+" 修改了自己的密码,新密码:"+password);
+        //应用日志处理
+        Log4admin log4admin=new Log4admin();
+        log4admin.log("["+getSessionType()+"]  "+getSessionName()+" 修改了自己的密码");
 
-            return SUCCESS;
+        Log4tenant log4tenant=new Log4tenant(getSessionName());
+        log4tenant.log("修改了自己的密码,新密码:"+password);
+
+        return SUCCESS;
     }
 }
-

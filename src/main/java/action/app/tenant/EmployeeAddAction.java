@@ -70,7 +70,7 @@ public class EmployeeAddAction extends CommonAction
 
             //admin日志处理
             Log4admin log4admin=new Log4admin();
-            log4admin.log(getSessionName()+"添加了一个员工.");
+            log4admin.log("["+getSessionType()+"]  "+getSessionName()+" 添加了一个员工.");
             return SUCCESS;
         }
         else

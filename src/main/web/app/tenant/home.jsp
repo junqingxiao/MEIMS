@@ -146,6 +146,84 @@
                     "<a href='#' class='remove'><span class='glyphicon glyphicon-remove' onclick='employeeInfo()'></span></a> "+
                     "<a href='#' class='trash'><span class='glyphicon glyphicon-trash'></span></a> ");
         }
+
+        //显示子菜单
+        function showUpdateAccount()
+        {
+            if($("#updateAccountInput").length == 0)
+            {//还未展开
+                $("#updateAccountLi").html( '<a href="#" onclick="showUpdateAccount()">'+
+                        '<span class="glyphicon glyphicon-edit"></span> 修改账号'+
+                        '</a>'+
+                        '<ul class="children">'+
+                        '<li>'+
+                        '<a href="#">'+
+                        '<input id="updateAccountInput" type="text" placeholder="新账号"><span class="glyphicon glyphicon-ok floatOk" onclick="updateAccount()" ></span>'+
+                        '</a>'+
+                        '</li>'+
+                        '</ul>');
+            }
+            else
+            {
+                $("#updateAccountLi").html( '<a href="#" onclick="showUpdateAccount()">'+
+                        '<span class="glyphicon glyphicon-edit"></span> 修改账号'+
+                        '</a>');
+            }
+        }
+
+        //左侧边栏修改账号确认
+        function updateAccount()
+        {
+            var name=$("#updateAccountInput").get(0).value;
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("updateAccountLi").innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("get","app/tenant/changeAccount?name="+name,true);
+            xmlhttp.send();
+        }
+
+        //显示子菜单
+        function showUpdatePassword()
+        {
+            if($("#updatePasswordInput").length == 0)
+            {//还未展开
+                $("#updatePasswordLi").html( '<a href="#" onclick="showUpdatePassword()">'+
+                        '<span class="glyphicon glyphicon-edit"></span> 修改密码'+
+                        '</a>'+
+                        '<ul class="children">'+
+                        '<li>'+
+                        '<a href="#">'+
+                        '<input id="updatePasswordInput" type="text" placeholder="新密码"><span class="glyphicon glyphicon-ok floatOk" onclick="updatePassword()"></span>'+
+                        '</a>'+
+                        '</li>'+
+                        '</ul>');
+            }
+            else
+            {
+                $("#updatePasswordLi").html( '<a href="#" onclick="showUpdatePassword()">'+
+                        '<span class="glyphicon glyphicon-edit"></span> 修改密码'+
+                        '</a>');
+            }
+        }
+
+        //左侧边栏修改密码确认
+        function updatePassword()
+        {
+            var password=$("#updatePasswordInput").get(0).value;
+
+            xmlhttp.open("get","app/tenant/changePassword?password="+password,true);
+            xmlhttp.send();
+
+            $("#updatePasswordLi").html('<a href="#" onclick="showUpdatePassword()">'+
+                    '<span class="glyphicon glyphicon-edit"></span> 修改密码'+
+                    '</a>');
+        }
     </script>
 
     <link rel="stylesheet" type="text/css"  href="css/style.css">

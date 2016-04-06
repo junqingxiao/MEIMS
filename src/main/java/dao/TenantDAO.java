@@ -43,4 +43,24 @@ public class TenantDAO extends AbstractAdminDAO
             throw new RuntimeException();
         }
     }
+
+    /**
+     * 获得id 应该保证在查询是否存在后使用
+     */
+    public final int getId(String name)
+    {
+        ResultSet set=query("name",name);
+
+        try
+        {
+            set.next();
+            return set.getInt(1);
+
+        }
+        catch (SQLException e)
+        {
+            getLogger().error("Error in getId...",e);
+            throw new RuntimeException();
+        }
+    }
 }

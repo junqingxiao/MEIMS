@@ -36,7 +36,7 @@ public class TenantDeleteAction extends CommonAction
 
         //应用日志处理
         Log4admin log4admin=new Log4admin();
-        log4admin.log(getSessionName()+" 删除了一个租户:"+name+".");
+        log4admin.log("["+getSessionType()+"]  "+getSessionName()+" 删除了一个租户:"+name+".");
         return SUCCESS;
     }
 }

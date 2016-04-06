@@ -44,7 +44,7 @@ public class Log4admin
         FileAppender appender = new FileAppender();
         PatternLayout layout = new PatternLayout();
         // log的输出形式
-        String conversionPattern = "%-d{yyyy-MM-dd HH:mm:ss}  [%p]  %m%n";
+        String conversionPattern = "%-d{yyyy-MM-dd HH:mm:ss}  %m%n";
         layout.setConversionPattern(conversionPattern);
         appender.setLayout(layout);
         // log输出路径

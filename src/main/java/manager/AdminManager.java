@@ -39,12 +39,20 @@ public class AdminManager extends AbstractManager
     }
 
     /**
+     * 修改 tenant 的密码
+     */
+    public final void updateTenantPassword(String oldName,String password)
+    {
+        tenantDAO.update("password",password,tenantDAO.getId(oldName));
+    }
+
+    /**
      * 修改 admin 的账户
      * 先查看是否重名
      */
     public final boolean updateAdminAccount(String oldName,String name)
     {
-        if((isTenant(name) || isAdmin(name)) && !oldName.equals(name))
+        if(isTenant(name) || isAdmin(name) || oldName.equals(name))
         {
             //新改的名字是已经存在的,这里加上了admin的判断
             return true;
@@ -52,6 +60,24 @@ public class AdminManager extends AbstractManager
         else
         {
             adminDAO.update("name",name,adminDAO.getId(oldName));
+        }
+        return false;
+    }
+
+    /**
+     * 修改 tenant 的账户
+     * 先查看是否重名
+     */
+    public final boolean updateTenantAccount(String oldName,String name)
+    {
+        if(isTenant(name) || isAdmin(name) || oldName.equals(name))
+        {
+            //新改的名字是已经存在的,这里加上了admin的判断
+            return true;
+        }
+        else
+        {
+            tenantDAO.update("name",name,tenantDAO.getId(oldName));
         }
         return false;
     }
@@ -207,13 +233,15 @@ public class AdminManager extends AbstractManager
         if (isAdmin(name,password))
         {
             Log4admin log4admin=new Log4admin();
-            log4admin.log(name+" 登录了.");
+            log4admin.log("[admin]  "+name+" 登录了.");
             return Constrants.ADMIN;
         }
         else if(isTenant(name,password))
         {
             Log4tenant log4tenant=new Log4tenant(name);
             log4tenant.log("登录了.");
+            Log4admin log4admin=new Log4admin();
+            log4admin.log("[tenant]  "+name+" 登录了.");
             return Constrants.TENANT;
         }
         else
