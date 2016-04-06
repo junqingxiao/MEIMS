@@ -1,6 +1,7 @@
 package action.app.tenant;
 
 import action.common.CommonAction;
+import action.common.Constrants;
 import data.Employee;
 import manager.TenantManager;
 
@@ -19,7 +20,7 @@ public class EmployeeInfoAction extends CommonAction
 
     public final String execute() throws Exception
     {
-        TenantManager tenantManager=new TenantManager("tenant_"+getSessionNo());
+        TenantManager tenantManager=new TenantManager(Constrants.PREFIX+getSessionNo());
         list=tenantManager.getEmployee();
         tenantManager.close();
         return SUCCESS;

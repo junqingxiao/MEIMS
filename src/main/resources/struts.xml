@@ -35,6 +35,9 @@
             <result name="success">employeeAddSuccessLi.jsp</result>
             <result name="error">employeeAddErrorLi.jsp</result>
         </action>
+        <action name="employeeDelete" class="action.app.tenant.EmployeeDeleteAction">
+            <result type="redirect">employeeInfo</result>
+        </action>
     </package>
 
 

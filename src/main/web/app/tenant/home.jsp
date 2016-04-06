@@ -92,6 +92,24 @@
             xmlhttp.open("get","app/tenant/employeeAdd?name="+name+"&pName="+pName+"&dName="+dName+"&date="+date,true);
             xmlhttp.send();
         }
+
+        //删除员工
+        function deleteEmployee(span)
+        {
+            var name=$(span).parent().parent().prev().prev().prev().prev().children(":first").get(0).value;
+            var no=$(span).parent().parent().prev().children(":first").get(0).value;
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("main").innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("get","app/tenant/employeeDelete?name="+name+"&no="+no,true);
+            xmlhttp.send();
+        }
     </script>
 
     <link rel="stylesheet" type="text/css"  href="css/style.css">

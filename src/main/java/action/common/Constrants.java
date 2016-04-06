@@ -18,4 +18,9 @@ public class Constrants
     public static final String TENANT="tenant";
     public static final String ADMIN="admin";
     public static final String NOBODY="nobody";
+
+    /**
+     * identifier的前缀
+     */
+    public static final String PREFIX="tenant_";
 }

@@ -29,6 +29,16 @@ public class TenantManager extends AbstractManager
     }
 
     /**
+     * 根据主键删除员工
+     * @param no 主键
+     */
+    public final void deleteEmplyee(int no)
+    {
+        employeeDAO.delete(no);
+    }
+
+
+    /**
      *先判断关系是否合法是否存在 再添加
      * @return 新的关系是否合法
      */

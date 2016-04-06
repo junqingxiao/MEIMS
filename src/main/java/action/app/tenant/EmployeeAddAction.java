@@ -1,6 +1,7 @@
 package action.app.tenant;
 
 import action.common.CommonAction;
+import action.common.Constrants;
 import filter.log.Log4admin;
 import filter.log.Log4tenant;
 import manager.TenantManager;
@@ -57,7 +58,7 @@ public class EmployeeAddAction extends CommonAction
 
     public String execute() throws Exception
     {
-        TenantManager tenantManager=new TenantManager("tenant_"+getSessionNo());
+        TenantManager tenantManager=new TenantManager(Constrants.PREFIX+getSessionNo());
         if (tenantManager.addEmployee(name,pName,dName,date))
         {  //合法
             tenantManager.close();
