@@ -56,6 +56,10 @@
         <action name="departmentInfo" class="action.app.tenant.DepartmentInfoAction">
             <result>departmentInfo.jsp</result>
         </action>
+        <action name="departmentAdd" class="action.app.tenant.DepartmentAddAction">
+            <result name="success">departmentAddSuccessLi.jsp</result>
+            <result name="error">departmentAddErrorLi.jsp</result>
+        </action>
         <!-- 部门信息 -->
     </package>
 

@@ -563,7 +563,7 @@ h1.page-header {
 
 #addIcon:hover
 {
-    color: #1d73cd;
+    color: greenyellow;
 }
 
 /*List Widget*/
@@ -645,6 +645,12 @@ h1.page-header {
     color: rgba(255, 255, 255, .5);
 }
 
+.note-body
+{
+    height: 200px;
+    font-size: 14px;
+}
+
 .note-main
 {
 
@@ -663,4 +669,48 @@ h1.page-header {
     width: 30%;
     height: 40px;
     line-height: 20px;
+}
+
+/*添加部门的icon*/
+#addDIcon
+{
+    margin-top: 6px;
+    margin-right: 18px;
+    display: inline-block;
+    color: #9fadbb;
+}
+
+#addDIcon:hover
+{
+    color: #d9edf7;
+}
+
+.departmentInput
+{
+    background-color: transparent;
+    border: 0;
+    text-align: center;
+}
+
+.note-sub .departmentInput
+{
+    width: 100%;
+}
+
+#addDOkIcon:hover
+{
+    background: rgba(0, 0, 0, .05);
+}
+
+#addDCancelIcon:hover
+{
+    color: white;
+    background-color: #f9243f;
+}
+
+.add-department-error-div
+{
+    background-color: red;
+    text-align: center;
+    color: white;
 }

@@ -18,21 +18,22 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">部门信息</h1>
+            <h1 class="page-header">部门信息<span  class="glyphicon glyphicon-plus pull-right" id="addDIcon" onclick="addDepartmentCheck()"></span></h1>
         </div>
     </div><!--/.row-->
 
     <div class="row">
+        <div id="addDDiv"></div>
         <s:iterator value="list" status="st">
         <div class="col-md-4">
             <div class="panel panel-info">
                 <div class="panel-heading dark-overlay">
-                    <s:property value="name" />
+                    <input class="departmentInput" type="text" value=<s:property value="name" /> readonly>
                 </div>
-                <div class="panel-body pre-scrollable" style="height: 200px;font-size: 14px">
+                <div class="panel-body pre-scrollable note-body">
                     <s:iterator value="list" status="st">
                     <div class="panel note">
-                        <div class="panel-heading note-main"><s:property value="name" /></div><div class="panel-heading note-sub"><s:property value="salary" /></div>
+                        <div class="panel-heading note-main"><input class="departmentInput" type="text" value=<s:property value="name" /> readonly></div><div class="panel-heading note-sub"><input class="departmentInput" type="text" value=<s:property value="salary" /> readonly></div>
                     </div>
                     </s:iterator>
                 </div>

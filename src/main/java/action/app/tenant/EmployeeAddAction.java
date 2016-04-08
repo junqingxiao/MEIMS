@@ -21,7 +21,6 @@ public class EmployeeAddAction extends CommonAction
         return date;
     }
 
-    // TODO: 16/4/5 不一定能从前端拿到值
     public void setDate(java.sql.Date date) {
         this.date = date;
     }
@@ -80,7 +79,5 @@ public class EmployeeAddAction extends CommonAction
             message="请输入合法的部门职位";
             return ERROR;
         }
-
-
     }
 }

@@ -244,6 +244,45 @@
                     '<span class="glyphicon glyphicon-edit"></span> 修改密码'+
                     '</a>');
         }
+
+        //添加部门check
+        function addDepartmentCheck()
+        {
+            if($("#addDDiv").html() == "")
+            {
+                $("#addDDiv").addClass("col-md-4");
+                $("#addDDiv").html('<div class="panel panel-info">'+
+                        '<div class="panel-heading dark-overlay">'+
+                        '<input class="departmentInput" type="text" placeholder="新部门">'+
+                        '</div>'+
+                        '<div class="panel-body pre-scrollable note-body">'+
+                        '<div class="panel note">'+
+                        '<div class="panel-heading note-main" id="addDOkIcon" onclick="addDepartment(this)">确定</div><div class="panel-heading note-sub" id="addDCancelIcon" onclick="departmentInfo()">取消</div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>');
+            }
+        }
+
+        //添加部门
+        function addDepartment(span)
+        {
+            //获得即时的值
+            var name=$(span).parent().parent().prev().children(":first").get(0).value;
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    var parentDiv=$("#addDDiv").parent();
+                    $("#addDDiv").remove();
+                    parentDiv.prepend(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/tenant/departmentAdd?name="+name,true);
+            xmlhttp.send();
+        }
+
     </script>
 
     <link rel="stylesheet" type="text/css"  href="css/style.css">
