@@ -20,6 +20,7 @@
             //todo 更多的模块之后active都要改
             $('#overallTab').addClass('active');
             $('#employeeInfoTab').removeClass('active');
+            $('#departmentInfoTab').removeClass('active');
             var xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function()
             {
@@ -37,6 +38,7 @@
         {
             $('#overallTab').removeClass('active');
             $('#employeeInfoTab').addClass('active');
+            $('#departmentInfoTab').removeClass('active');
             var xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function()
             {
@@ -46,6 +48,24 @@
                 }
             }
             xmlhttp.open("get","app/tenant/employeeInfo",true);
+            xmlhttp.send();
+        }
+
+        //跳转部门信息
+        function departmentInfo()
+        {
+            $('#overallTab').removeClass('active');
+            $('#employeeInfoTab').removeClass('active');
+            $('#departmentInfoTab').addClass('active');
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("main").innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("get","app/tenant/departmentInfo",true);
             xmlhttp.send();
         }
 
@@ -240,6 +260,7 @@
     <ul class="nav menu">
         <li class="active" id="overallTab"><a href="#" onclick="overall()"><span class="glyphicon glyphicon-dashboard"></span> 总览</a></li>
         <li id="employeeInfoTab"><a href="#" onclick="employeeInfo()"><span class="glyphicon glyphicon-list"></span> 员工信息</a></li>
+        <li id="departmentInfoTab"><a href="#" onclick="departmentInfo()"><span class="glyphicon glyphicon-th"></span> 部门信息</a></li>
         <li role="presentation" class="divider"></li>
         <li class="parent" id="updateAccountLi">
             <a href="#" onclick="showUpdateAccount()">

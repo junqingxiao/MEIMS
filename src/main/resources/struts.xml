@@ -28,6 +28,7 @@
         <action name="overall" class="action.app.tenant.OverallAction">
             <result>overall.jsp</result>
         </action>
+        <!-- 员工信息 -->
         <action name="employeeInfo" class="action.app.tenant.EmployeeInfoAction">
             <result>employeeInfo.jsp</result>
         </action>
@@ -49,6 +50,13 @@
         </action>
         <action name="changePassword" class="action.app.tenant.ChangePasswordAction">
         </action>
+        <!-- 员工信息 -->
+
+        <!-- 部门信息 -->
+        <action name="departmentInfo" class="action.app.tenant.DepartmentInfoAction">
+            <result>departmentInfo.jsp</result>
+        </action>
+        <!-- 部门信息 -->
     </package>
 
 

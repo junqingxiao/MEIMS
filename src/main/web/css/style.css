@@ -630,3 +630,37 @@ h1.page-header {
     float:right;
     margin-top: 11px;
 }
+
+/*department 的 note*/
+.note
+{
+    background: #d9edf7;
+    color: #31708f;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    margin-bottom: 5px
+}
+
+.note .text-muted
+{
+    color: rgba(255, 255, 255, .5);
+}
+
+.note-main
+{
+
+    text-align: center;
+    display: inline-block;
+    width: 70%;
+    height: 40px;
+    line-height: 20px;
+}
+
+.note-sub
+{
+    background: rgba(0, 0, 0, .02);
+    text-align: center;
+    display: inline-block;
+    width: 30%;
+    height: 40px;
+    line-height: 20px;
+}

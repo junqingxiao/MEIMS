@@ -4,7 +4,9 @@ import dao.DepartmentDAO;
 import dao.EmployeeDAO;
 import dao.EpchangeDAO;
 import dao.PositionDAO;
+import data.Department;
 import data.Employee;
+import data.Position;
 import org.MtConnector.Session.MtResultSet;
 
 import java.util.ArrayList;
@@ -26,6 +28,39 @@ public class TenantManager extends AbstractManager
         positionDAO.init(identifier);
         departmentDAO.init(identifier);
         epchangeDAO.init(identifier);
+    }
+
+    /**
+     * 获得部门信息
+     */
+    public final List<Department> getDepartment()
+    {
+        List<Department> list=new ArrayList<Department>();
+
+        MtResultSet dSet=departmentDAO.queryAll();
+        while (dSet.next())
+        {
+            Department department=new Department();
+            int dNo=dSet.getInt(1);
+            String name=dSet.getString(2);
+            MtResultSet pSet=positionDAO.query("dNo",dNo);
+            List<Position> pList=new ArrayList<Position>();
+
+            while (pSet.next())
+            {
+                Position position=new Position();
+                position.setNo(pSet.getInt(1));
+                position.setName(pSet.getString(2));
+                position.setSalary(pSet.getInt(3));
+                pList.add(0,position);
+            }
+            department.setNo(dNo);
+            department.setName(name);
+            department.setList(pList);
+            list.add(0,department);
+        }
+
+        return list;
     }
 
     /**
