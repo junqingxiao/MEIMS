@@ -121,6 +121,16 @@ abstract class AbstractAdminDAO extends AbstractDAO<ResultSet>
     }
 
     /**
+     * 根据1属性删除一条纪录
+     */
+    @Override
+    public final void delete(String name,Object value)
+    {
+        String sql="delete from "+getClassName()+" where "+name+"='"+value+"'";
+        executeUpdate(sql);
+    }
+
+    /**
      * 根据2属性删除一条纪录
      */
     @Override

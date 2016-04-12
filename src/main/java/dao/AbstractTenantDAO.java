@@ -84,6 +84,16 @@ abstract class AbstractTenantDAO extends AbstractDAO<MtResultSet>
     }
 
     /**
+     * 根据1属性删除一条纪录
+     */
+    @Override
+    public final void delete(String name,Object value)
+    {
+        String sql="delete from "+getClassName()+" where "+name+"='"+value+"'";
+        session.executeUpdate(sql);
+    }
+
+    /**
      * 根据2属性删除一条纪录
      */
     @Override

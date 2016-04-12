@@ -9,7 +9,7 @@ import manager.TenantManager;
 /**
  * @author mk
  */
-public class DepartmrntUpdateAction extends CommonAction
+public class DepartmentUpdateAction extends CommonAction
 {
     private String name;
 

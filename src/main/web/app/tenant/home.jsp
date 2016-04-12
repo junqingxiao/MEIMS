@@ -290,7 +290,8 @@
             $(".departmentHeadInput").removeAttr("readonly");
             //显示确认取消按钮
             $(".changeDDiv").html("<span class='glyphicon glyphicon-ok' onclick='changeDepartment(this)'></span> "+
-            "<span class='glyphicon glyphicon-remove' onclick='departmentInfo()'></span>");
+            "<span class='glyphicon glyphicon-remove' onclick='departmentInfo()'></span>"+
+                    "<span class='glyphicon glyphicon-trash trash' onclick='deleteDepartment(this)'></span>");
         }
 
         //修改部门
@@ -309,6 +310,24 @@
                 }
             }
             xmlhttp.open("get","app/tenant/departmentUpdate?name="+name+"&no="+no,true);
+            xmlhttp.send();
+        }
+
+        //删除部门
+        function deleteDepartment(span)
+        {
+            var name=$(span).parent().prev().get(0).value;
+            var no=$(span).parent().prev().attr("no");
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    $("#main").html(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/tenant/departmentDelete?name="+name+"&no="+no,true);
             xmlhttp.send();
         }
 

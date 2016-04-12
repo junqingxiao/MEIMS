@@ -59,6 +59,11 @@ abstract class AbstractDAO<T>
     public abstract void delete(int no);
 
     /**
+     * 根据1属性删除一条纪录
+     */
+    public abstract void delete(String name,Object value);
+
+    /**
      * 根据2属性删除一条纪录
      */
     public abstract void delete(String name1,Object value1,String name2,Object value2);

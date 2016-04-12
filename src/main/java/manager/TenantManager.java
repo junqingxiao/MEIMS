@@ -31,6 +31,23 @@ public class TenantManager extends AbstractManager
     }
 
     /**
+     * 根据主键删除部门
+     * @param no 主键
+     */
+    public final void deleteDepartment(int no)
+    {
+        //这里考虑要把这个部门里的所有职位 员工全删掉
+        MtResultSet pSet=positionDAO.query("DNo",no);
+        while (pSet.next())
+        {
+            // TODO: 16/4/12 有点问题
+            employeeDAO.delete("PNo",pSet.getInt(1));
+        }
+        positionDAO.delete("DNo",no);
+        departmentDAO.delete(no);
+    }
+
+    /**
      * 更新部门信息
      * @return 是否已经存在
      */
@@ -129,7 +146,7 @@ public class TenantManager extends AbstractManager
      * 根据主键删除员工
      * @param no 主键
      */
-    public final void deleteEmplyee(int no)
+    public final void deleteEmployee(int no)
     {
         employeeDAO.delete(no);
     }

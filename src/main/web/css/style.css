@@ -728,3 +728,13 @@ h1.page-header {
     text-align: center;
     color: white;
 }
+
+.trash:hover
+{
+    color: #ef4040;
+}
+
+.remove:hover
+{
+    color: #ef4040;
+}
