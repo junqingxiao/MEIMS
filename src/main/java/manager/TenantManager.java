@@ -31,6 +31,24 @@ public class TenantManager extends AbstractManager
     }
 
     /**
+     * 更新部门信息
+     * @return 是否已经存在
+     */
+    public final boolean updateDepartment(String name,int no)
+    {
+        MtResultSet set=departmentDAO.query("name",name);
+        if (set.next())
+        {//如果已经存在
+            return true;
+        }
+        else
+        {
+            departmentDAO.update("name",name,no);
+            return false;
+        }
+    }
+
+    /**
      *先判断新部门是否合法是否存在 再添加
      * @return 新的部门是否合法
      */

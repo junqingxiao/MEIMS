@@ -60,6 +60,10 @@
             <result name="success">departmentAddSuccessLi.jsp</result>
             <result name="error">departmentAddErrorLi.jsp</result>
         </action>
+        <action name="departmentUpdate" class="action.app.tenant.DepartmrntUpdateAction">
+            <result name="success">departmentUpdateSuccessLi.jsp</result>
+            <result name="error">departmentUpdateErrorLi.jsp</result>
+        </action>
         <!-- 部门信息 -->
     </package>
 

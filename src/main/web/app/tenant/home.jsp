@@ -253,7 +253,7 @@
                 $("#addDDiv").addClass("col-md-4");
                 $("#addDDiv").html('<div class="panel panel-info">'+
                         '<div class="panel-heading dark-overlay">'+
-                        '<input class="departmentInput" type="text" placeholder="新部门">'+
+                        '<input class="departmentHeadInput" type="text" placeholder="新部门">'+
                         '</div>'+
                         '<div class="panel-body pre-scrollable note-body">'+
                         '<div class="panel note">'+
@@ -280,6 +280,35 @@
                 }
             }
             xmlhttp.open("get","app/tenant/departmentAdd?name="+name,true);
+            xmlhttp.send();
+        }
+
+        //修改部门check
+        function  changeDepartmentCheck()
+        {
+            //部门可编辑
+            $(".departmentHeadInput").removeAttr("readonly");
+            //显示确认取消按钮
+            $(".changeDDiv").html("<span class='glyphicon glyphicon-ok' onclick='changeDepartment(this)'></span> "+
+            "<span class='glyphicon glyphicon-remove' onclick='departmentInfo()'></span>");
+        }
+
+        //修改部门
+        function changeDepartment(span)
+        {
+            //获得即时的值
+            var name=$(span).parent().prev().get(0).value;
+            var no=$(span).parent().prev().attr("no");
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    $(span).parent().parent().html(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/tenant/departmentUpdate?name="+name+"&no="+no,true);
             xmlhttp.send();
         }
 

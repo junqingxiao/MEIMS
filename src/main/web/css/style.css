@@ -656,7 +656,7 @@ h1.page-header {
 
     text-align: center;
     display: inline-block;
-    width: 70%;
+    width: 68%;
     height: 40px;
     line-height: 20px;
 }
@@ -672,7 +672,7 @@ h1.page-header {
 }
 
 /*添加部门的icon*/
-#addDIcon
+.addDIcon
 {
     margin-top: 6px;
     margin-right: 18px;
@@ -680,7 +680,7 @@ h1.page-header {
     color: #9fadbb;
 }
 
-#addDIcon:hover
+.addDIcon:hover
 {
     color: #d9edf7;
 }
@@ -690,6 +690,20 @@ h1.page-header {
     background-color: transparent;
     border: 0;
     text-align: center;
+}
+
+.departmentHeadInput
+{
+    background-color: transparent;
+    border: 0;
+    text-align: center;
+    display: inline;
+}
+
+.changeDDiv
+{
+    display: inline;
+    margin-top: 4px;
 }
 
 .note-sub .departmentInput

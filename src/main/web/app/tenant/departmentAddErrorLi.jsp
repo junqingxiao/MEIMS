@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
 <div id="addDDiv" class="col-md-4">
     <div class="panel panel-info">
         <div class="panel-heading dark-overlay">
@@ -15,8 +14,11 @@
         </div>
         <div class="panel-body pre-scrollable note-body">
             <div class="panel note">
-                <div class="panel-heading note-main" id="addDOkIcon" onclick="addDepartment(this)">确定</div><div class="panel-heading note-sub" id="addDCancelIcon" onclick="departmentInfo()">取消</div>
-                <div class="add-department-error-div"><span class="glyphicon glyphicon-exclamation-sign" title=<s:property value="message" />></span><div>
+                <div class="panel-heading note-main" id="addDOkIcon" onclick="addDepartment(this)">确定</div>
+                <div class="panel-heading note-sub" id="addDCancelIcon" onclick="departmentInfo()">取消</div>
+                <div class="add-department-error-div"><span class="glyphicon glyphicon-exclamation-sign" title=
+                        <s:property value="message"/>></span>
+                </div>
             </div>
         </div>
     </div>
