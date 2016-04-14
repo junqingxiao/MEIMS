@@ -10,10 +10,12 @@
 
 
 <input class="departmentHeadInput" type="text" value=<s:property value="name"/> readonly no=<s:property value="no"/>>
-<div class="changeDDiv pull-right"></div>
+<div class="changeDDiv pull-right">
+    <span class="glyphicon glyphicon-plus pull-right addPIcon" onclick="addPositionCheck(this)"></span>
+</div>
 
 <script>
-    $(".changeDDiv").html("");
+    $(".changeDDiv").html('<span class="glyphicon glyphicon-plus pull-right addPIcon" onclick="addPositionCheck(this)"></span>');
     $(".departmentHeadInput").attr("readonly","readonly");
 </script>
 

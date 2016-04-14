@@ -32,15 +32,20 @@
             <div class="panel panel-info">
                 <div class="panel-heading dark-overlay">
                     <input class="departmentHeadInput" type="text" value=
-                        <s:property value="name"/> readonly no=<s:property value="no"/>><div class="changeDDiv pull-right"></div>
+                        <s:property value="name"/> readonly no=<s:property value="no"/>>
+                    <div class="changeDDiv pull-right">
+                        <span class="glyphicon glyphicon-plus pull-right addPIcon" onclick="addPositionCheck(this)"></span>
+                    </div>
                 </div>
                 <div class="panel-body pre-scrollable note-body">
+                    <div></div>
                     <s:iterator value="list" status="st">
                         <div class="panel note">
                             <div class="panel-heading note-main"><input class="departmentInput" type="text" value=
                                 <s:property value="name"/> readonly></div>
                             <div class="panel-heading note-sub"><input class="departmentInput" type="text" value=
                                 <s:property value="salary"/> readonly></div>
+                            <div class="panel-heading note-edit"><span class="glyphicon glyphicon-pencil" onclick=""></span></div>
                         </div>
                     </s:iterator>
                 </div>

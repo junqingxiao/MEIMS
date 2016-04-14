@@ -291,7 +291,7 @@
             //显示确认取消按钮
             $(".changeDDiv").html("<span class='glyphicon glyphicon-ok' onclick='changeDepartment(this)'></span> "+
             "<span class='glyphicon glyphicon-remove' onclick='departmentInfo()'></span>"+
-                    "<span class='glyphicon glyphicon-trash trash' onclick='deleteDepartment(this)'></span>");
+                    "<span class='glyphicon glyphicon-trash' onclick='deleteDepartment(this)'></span>");
         }
 
         //修改部门
@@ -328,6 +328,42 @@
                 }
             }
             xmlhttp.open("get","app/tenant/departmentDelete?name="+name+"&no="+no,true);
+            xmlhttp.send();
+        }
+
+        //增加职位check
+        function addPositionCheck(span)
+        {
+            if($(span).parent().parent().next().children(":first").html() == "")
+            {
+                $(span).parent().parent().next().children(":first").html('<div class="panel note">'+
+                        '<div class="panel-heading note-main"><input class="departmentInput" type="text" placeholder="新职位"></div>'+
+                        '<div class="panel-heading note-sub"><input class="departmentInput" type="text" placeholder="新工资"></div>'+
+                        '<div class="panel-heading note-main" id="addDOkIcon" onclick="addPosition(this)">确定</div><div class="panel-heading note-sub" id="addDCancelIcon" onclick="departmentInfo()">取消</div>'+
+                        '</div>');
+            }
+        }
+
+        //增加职位
+        function addPosition(span)
+        {
+            //获得即时的值
+            var pName=$(span).prev().prev().children(":first").get(0).value;
+            var salary=$(span).prev().children(":first").get(0).value;
+            var dNo=$(span).parent().parent().parent().prev().children(":first").attr("no");
+            var dName=$(span).parent().parent().parent().prev().children(":first").get(0).value;//用于日志
+
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    //todo 处理返回情况
+                    var parentDiv=$(span).parent().parent().parent();
+                    $(span).parent().parent().remove();
+                    parentDiv.prepend(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/tenant/positionAdd?name="+pName+"&salary="+salary+"&dNo="+dNo+"&dName="+dName,true);
             xmlhttp.send();
         }
 

@@ -18,8 +18,11 @@ abstract class AbstractTenantDAO extends AbstractDAO<MtResultSet>
 
     private MtSession session;
 
+    /**
+     * 这里需要position继承
+     */
     @Override
-    public final void init(String tenantIdentifier)
+    public void init(String tenantIdentifier)
     {
         MtConfiguration configuration=new MtConfiguration(xmlPath);
         configuration.configure();
@@ -48,9 +51,10 @@ abstract class AbstractTenantDAO extends AbstractDAO<MtResultSet>
 
     /**
      *根据3属性插入一条纪录,主键自增
+     * 这里position要重写 因为冲突了sql 的 position()语法
      */
     @Override
-    public final void insert(String name1,Object value1,String name2,Object value2,String name3,Object value3)
+    public void insert(String name1,Object value1,String name2,Object value2,String name3,Object value3)
     {
         String sql="insert into "+getClassName()+"("+name1+","+name2+","+name3+") values('"+value1+"','"+value2+"','"+value3+"')";
         session.executeUpdate(sql);

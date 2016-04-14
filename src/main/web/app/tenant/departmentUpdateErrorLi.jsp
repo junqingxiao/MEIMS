@@ -13,5 +13,5 @@
 <div class="changeDDiv pull-right">
     <a href="#" class="warning"><span class="glyphicon glyphicon-exclamation-sign" title=<s:property value="message" />></span></a>
     <span class='glyphicon glyphicon-ok' onclick='changeDepartment(this)'></span>
-    <span class='glyphicon glyphicon-remove' onclick='departmentInfo()'></span>
+    <span class='glyphicon glyphicon-remove remove' onclick='departmentInfo()'></span>
 </div>

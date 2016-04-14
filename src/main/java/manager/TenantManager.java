@@ -31,6 +31,24 @@ public class TenantManager extends AbstractManager
     }
 
     /**
+     *先判断新职位是否合法是否存在 再添加
+     * @return 新的部门是否存在 true 已经存在
+     */
+    public final boolean addPosition(String name,int salary,int dNo)
+    {
+        MtResultSet set=positionDAO.query("name",name,"dNo",dNo);
+        if (set.next())
+        {//已经存在这个职位
+            return true;
+        }
+        else
+        {
+            positionDAO.insert(name,salary,dNo);
+            return false;
+        }
+    }
+
+    /**
      * 根据主键删除部门
      * @param no 主键
      */

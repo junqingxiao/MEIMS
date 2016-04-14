@@ -9,11 +9,17 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <div id="addDDiv"></div>
-    <div class="col-md-4">
-        <div class="panel panel-info">
-            <div class="panel-heading dark-overlay">
-                <input class="departmentInput" type="text" value=<s:property value="name" /> readonly>
+<div class="col-md-4">
+    <div class="panel panel-info">
+        <div class="panel-heading dark-overlay">
+            <input class="departmentInput" type="text" value=
+            <s:property value="name"/> readonly no=<s:property value="no"/>>
+            <div class="changeDDiv pull-right">
+                <span class="glyphicon glyphicon-plus pull-right addPIcon" onclick="addPositionCheck(this)"></span>
             </div>
-            <div class="panel-body pre-scrollable note-body"></div>
+        </div>
+        <div class="panel-body pre-scrollable note-body">
+            <div id="addPDiv"></div>
         </div>
     </div>
+</div>

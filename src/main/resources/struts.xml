@@ -68,6 +68,13 @@
             <result type="redirect">departmentInfo.action</result>
         </action>
         <!-- 部门信息 -->
+
+        <!-- 职位信息 -->
+        <action name="positionAdd" class="action.app.tenant.PositionAddAction">
+            <result name="success">positionAddSuccessLi.jsp</result>
+            <result name="error">positionAddErrorLi.jsp</result>
+        </action>
+        <!-- 职位信息 -->
     </package>
 
 

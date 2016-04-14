@@ -87,6 +87,7 @@ h3, h4 {
 }
 
 .panel-heading {
+    padding: 10px 7px;
     font-size: 18px;
     font-weight: 300;
     letter-spacing: 0.025em;
@@ -615,16 +616,6 @@ h1.page-header {
 }
 
 /*返回的消息*/
-.warning
-{
-    color: red;
-}
-
-.warning:hover
-{
-    color: red;
-}
-
 .floatOk
 {
     float:right;
@@ -656,7 +647,7 @@ h1.page-header {
 
     text-align: center;
     display: inline-block;
-    width: 68%;
+    width: 60%;
     height: 40px;
     line-height: 20px;
 }
@@ -666,23 +657,33 @@ h1.page-header {
     background: rgba(0, 0, 0, .02);
     text-align: center;
     display: inline-block;
-    width: 30%;
+    width: 28%;
     height: 40px;
     line-height: 20px;
+}
+
+.note-edit
+{
+    display: inline-block;
+    width: 8%;
+    height: 40px;
+    line-height: 20px;
+    padding: 10px 2px;
 }
 
 /*添加部门的icon*/
 .addDIcon
 {
-    margin-top: 6px;
+    margin-top: 12px;
     margin-right: 18px;
+    font-size: 30px;
     display: inline-block;
     color: #9fadbb;
 }
 
 .addDIcon:hover
 {
-    color: #d9edf7;
+    color: #777777;
 }
 
 .departmentInput
@@ -690,6 +691,7 @@ h1.page-header {
     background-color: transparent;
     border: 0;
     text-align: center;
+    width: inherit;
 }
 
 .departmentHeadInput
@@ -703,7 +705,7 @@ h1.page-header {
 .changeDDiv
 {
     display: inline;
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .note-sub .departmentInput
@@ -729,12 +731,70 @@ h1.page-header {
     color: white;
 }
 
-.trash:hover
+.glyphicon-trash
+{
+    color: #9fadbb;
+}
+
+.glyphicon-trash:hover
 {
     color: #ef4040;
 }
 
-.remove:hover
+.glyphicon-remove
+{
+    color: #9fadbb;
+}
+
+.glyphicon-remove:hover
 {
     color: #ef4040;
+}
+
+.glyphicon-plus
+{
+    color: #9fadbb;
+}
+
+.glyphicon-plus:hover
+{
+    color: #777777;
+}
+
+.glyphicon-pencil
+{
+    color: #9fadbb;
+}
+
+.glyphicon-pencil:hover
+{
+    color: #777777;
+}
+
+.glyphicon-ok
+{
+    color: #9fadbb;
+}
+
+.glyphicon-ok:hover
+{
+    color: #777777;
+}
+
+.glyphicon-exclamation-sign
+{
+    color: red;
+}
+
+.add-department-error-div .glyphicon-exclamation-sign
+{
+    color: white;
+}
+
+/*添加部门的icon*/
+.addPIcon
+{
+    margin-top: 11px;
+    margin-right: 5px;
+    color: #9fadbb;
 }
