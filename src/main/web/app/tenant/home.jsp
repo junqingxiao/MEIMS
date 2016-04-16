@@ -357,13 +357,43 @@
             {
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
                 {
-                    //todo 处理返回情况
                     var parentDiv=$(span).parent().parent().parent();
                     $(span).parent().parent().remove();
                     parentDiv.prepend(xmlhttp.responseText);
                 }
             }
             xmlhttp.open("get","app/tenant/positionAdd?name="+pName+"&salary="+salary+"&dNo="+dNo+"&dName="+dName,true);
+            xmlhttp.send();
+        }
+
+        //修改职位check
+        function updatePositionCheck(span)
+        {
+            $(span).parent().prev().prev().children(":first").removeAttr("readonly");
+            $(span).parent().prev().children(":first").removeAttr("readonly");
+
+            $(span).parent().after('<div class="panel-heading note-main" id="addDOkIcon" onclick="">确定</div><div class="panel-heading note-sub" id="addDCancelIcon" onclick="">取消</div>');
+            $(span).parent().html("<span class='glyphicon glyphicon-trash' onclick='deletePosition(this)'></span>");
+        }
+
+        //删除职位
+        function deletePosition(span)
+        {
+            //得到以前的值
+            var pName=$(span).parent().prev().prev().children(":first").attr("value");
+            var dNo=$(span).parent().parent().parent().prev().children(":first").attr("no");
+            //dName用于日志
+            var dName=$(span).parent().parent().parent().prev().children(":first").attr("value");
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    $("#main").html(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/tenant/positionDelete?pName="+pName+"&dNo="+dNo+"&dName="+dName,true);
             xmlhttp.send();
         }
 

@@ -31,6 +31,21 @@ public class TenantManager extends AbstractManager
     }
 
     /**
+     * 根据部门主键 职位名字 删除职位
+     */
+    public final void deletePosition(int dNo,String pName)
+    {
+        //这里考虑要把这个职位里的所有员工全删掉
+        MtResultSet pSet=positionDAO.query("DNo",dNo,"Name",pName);
+        pSet.next();
+        int pNo=pSet.getInt(1);
+        //删除员工
+        employeeDAO.delete("PNo",pNo);
+        //删除职位
+        positionDAO.delete("No",pNo);
+    }
+
+    /**
      *先判断新职位是否合法是否存在 再添加
      * @return 新的部门是否存在 true 已经存在
      */
