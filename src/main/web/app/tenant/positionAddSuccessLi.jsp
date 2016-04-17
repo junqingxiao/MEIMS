@@ -14,6 +14,5 @@
     <s:property value="name"/> readonly></div>
     <div class="panel-heading note-sub"><input class="departmentInput" type="text" value=
     <s:property value="salary"/> readonly></div>
-    <div class="panel-heading note-edit"><span class="glyphicon glyphicon-pencil" onclick=""></span></div>
-    <!-- todo 修改的时候要注意onclick-->
+    <div class="panel-heading note-edit"><span class="glyphicon glyphicon-pencil" onclick="updatePositionCheck(this)"></span></div>
 </div>

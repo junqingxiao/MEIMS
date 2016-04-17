@@ -31,6 +31,27 @@ public class TenantManager extends AbstractManager
     }
 
     /**
+     * 更新职位信息
+     * @return 是否已经存在
+     */
+    public final boolean updatePosition(String pName,String oldPName,String salary,int dNo)
+    {
+        MtResultSet set=positionDAO.query("name",pName,"DNo",dNo);
+        if (set.next())
+        {//如果已经存在
+            return true;
+        }
+        else
+        {
+            MtResultSet pSet= positionDAO.query("name",oldPName,"DNo",dNo);
+            pSet.next();
+            int pNo=pSet.getInt(1);
+            positionDAO.update("name",pName,"salary",salary,pNo);
+            return false;
+        }
+    }
+
+    /**
      * 根据部门主键 职位名字 删除职位
      */
     public final void deletePosition(int dNo,String pName)

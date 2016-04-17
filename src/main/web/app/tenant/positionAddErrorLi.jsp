@@ -11,8 +11,8 @@
     <div class="panel note">
         <div class="panel-heading note-main"><input class="departmentInput" type="text" placeholder="新职位"></div>
         <div class="panel-heading note-sub"><input class="departmentInput" type="text" placeholder="新工资"></div>
-        <div class="panel-heading note-main" id="addDOkIcon" onclick="addPosition(this)">确定</div>
-        <div class="panel-heading note-sub" id="addDCancelIcon" onclick="departmentInfo()">取消</div>
+        <div class="panel-heading note-main addDOkIcon"  onclick="addPosition(this)">确定</div>
+        <div class="panel-heading note-sub addDOkIcon" onclick="departmentInfo()">取消</div>
         <div class="add-department-error-div"><span class="glyphicon glyphicon-exclamation-sign" title=
                 <s:property value="message"/>></span>
         </div>

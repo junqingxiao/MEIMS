@@ -77,6 +77,10 @@
         <action name="positionDelete" class="action.app.tenant.PositionDeleteAction">
             <result type="redirect">departmentInfo.action</result>
         </action>
+        <action name="positionUpdate" class="action.app.tenant.PositionUpdateAction">
+            <result name="success">positionUpdateSuccessLi.jsp</result>
+            <result name="error">positionUpdateErrorLi.jsp</result>
+        </action>
         <!-- 职位信息 -->
     </package>
 

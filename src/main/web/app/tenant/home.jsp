@@ -257,7 +257,7 @@
                         '</div>'+
                         '<div class="panel-body pre-scrollable note-body">'+
                         '<div class="panel note">'+
-                        '<div class="panel-heading note-main" id="addDOkIcon" onclick="addDepartment(this)">确定</div><div class="panel-heading note-sub" id="addDCancelIcon" onclick="departmentInfo()">取消</div>'+
+                        '<div class="panel-heading note-main addDOkIcon" onclick="addDepartment(this)">确定</div><div class="panel-heading note-sub addDCancelIcon" onclick="departmentInfo()">取消</div>'+
                         '</div>'+
                         '</div>'+
                         '</div>');
@@ -339,7 +339,7 @@
                 $(span).parent().parent().next().children(":first").html('<div class="panel note">'+
                         '<div class="panel-heading note-main"><input class="departmentInput" type="text" placeholder="新职位"></div>'+
                         '<div class="panel-heading note-sub"><input class="departmentInput" type="text" placeholder="新工资"></div>'+
-                        '<div class="panel-heading note-main" id="addDOkIcon" onclick="addPosition(this)">确定</div><div class="panel-heading note-sub" id="addDCancelIcon" onclick="departmentInfo()">取消</div>'+
+                        '<div class="panel-heading note-main addDOkIcon"  onclick="addPosition(this)">确定</div><div class="panel-heading note-sub addDCancelIcon" onclick="departmentInfo()">取消</div>'+
                         '</div>');
             }
         }
@@ -372,7 +372,7 @@
             $(span).parent().prev().prev().children(":first").removeAttr("readonly");
             $(span).parent().prev().children(":first").removeAttr("readonly");
 
-            $(span).parent().after('<div class="panel-heading note-main" id="addDOkIcon" onclick="">确定</div><div class="panel-heading note-sub" id="addDCancelIcon" onclick="">取消</div>');
+            $(span).parent().after('<div class="panel-heading note-main addDOkIcon" onclick="changePosition(this)">确定</div><div class="panel-heading note-sub addDCancelIcon" onclick="departmentInfo()">取消</div>');
             $(span).parent().html("<span class='glyphicon glyphicon-trash' onclick='deletePosition(this)'></span>");
         }
 
@@ -394,6 +394,31 @@
                 }
             }
             xmlhttp.open("get","app/tenant/positionDelete?pName="+pName+"&dNo="+dNo+"&dName="+dName,true);
+            xmlhttp.send();
+        }
+
+        //修改职位
+        function changePosition(span)
+        {
+            //获得即时的值
+            var pName=$(span).prev().prev().prev().children(":first").get(0).value;
+            var salary=$(span).prev().prev().children(":first").get(0).value;
+            var dNo=$(span).parent().parent().prev().children(":first").attr("no");
+
+
+            //得到以前的值
+            var oldPName=$(span).prev().prev().prev().children(":first").attr("value");
+            var dName=$(span).parent().parent().prev().children(":first").attr("value");//用于日志
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    $(span).parent().html(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/tenant/positionUpdate?pName="+pName+"&salary="+salary+"&oldPName="+oldPName+"&dName="+dName+"&dNo="+dNo,true);
             xmlhttp.send();
         }
 

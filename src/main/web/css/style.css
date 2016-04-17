@@ -713,12 +713,12 @@ h1.page-header {
     width: 100%;
 }
 
-#addDOkIcon:hover
+.addDOkIcon:hover
 {
     background: rgba(0, 0, 0, .05);
 }
 
-#addDCancelIcon:hover
+.addDCancelIcon:hover
 {
     color: white;
     background-color: #f9243f;
