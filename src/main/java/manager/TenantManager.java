@@ -94,7 +94,6 @@ public class TenantManager extends AbstractManager
         MtResultSet pSet=positionDAO.query("DNo",no);
         while (pSet.next())
         {
-            // TODO: 16/4/12 有点问题
             employeeDAO.delete("PNo",pSet.getInt(1));
         }
         positionDAO.delete("DNo",no);

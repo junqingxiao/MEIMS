@@ -44,7 +44,7 @@ public class DepartmentAddAction extends CommonAction
 
             getLogger().info(getSessionName()+" add a department.");
             //租户日志处理
-            Log4tenant log4tenant=new Log4tenant(getSessionName());
+            Log4tenant log4tenant=new Log4tenant(getSessionNo());
             log4tenant.log("添加了一个部门.新部门名:"+name);
 
             //admin日志处理

@@ -48,7 +48,7 @@ public class ChangeAccountAction extends CommonAction
             Log4admin log4admin=new Log4admin();
             log4admin.log("["+getSessionType()+"]  "+getSessionName()+" 修改了自己的账户,新账户:"+name);
 
-            Log4tenant log4tenant=new Log4tenant(getSessionName());
+            Log4tenant log4tenant=new Log4tenant(getSessionNo());
             log4tenant.log("修改了自己的账户,新账户:"+name);
             setSessionName(name);
             adminManager.close();

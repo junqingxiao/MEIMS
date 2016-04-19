@@ -29,7 +29,7 @@ public class ChangePasswordAction extends CommonAction
         Log4admin log4admin=new Log4admin();
         log4admin.log("["+getSessionType()+"]  "+getSessionName()+" 修改了自己的密码");
 
-        Log4tenant log4tenant=new Log4tenant(getSessionName());
+        Log4tenant log4tenant=new Log4tenant(getSessionNo());
         log4tenant.log("修改了自己的密码,新密码:"+password);
 
         return SUCCESS;

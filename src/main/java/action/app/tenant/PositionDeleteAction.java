@@ -57,7 +57,7 @@ public class PositionDeleteAction extends CommonAction
         Log4admin log4admin=new Log4admin();
         log4admin.log("["+getSessionType()+"]  "+getSessionName()+" 删除了的一个职位.");
 
-        Log4tenant log4tenant=new Log4tenant(getSessionName());
+        Log4tenant log4tenant=new Log4tenant(getSessionNo());
         log4tenant.log("删除了部门["+dName+"]下的一个职位:"+pName);
         return SUCCESS;
     }

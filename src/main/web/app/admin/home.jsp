@@ -16,12 +16,31 @@
     <script src="js/bootstrap.min.js" ></script>
 
     <script>
+        //跳转日志
+        function logInfo()
+        {
+            $('#logInfoTab').addClass('active');
+            $('#tenantManageTab').removeClass('active');
+            $('#overallTab').removeClass('active');
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("main").innerHTML=xmlhttp.responseText;
+                }
+            }
+            //先测试一下log
+            xmlhttp.open("get","app/admin/logInfo",true);
+            xmlhttp.send();
+        }
+
         //跳转overall
         function overall()
         {
-            //todo 更多的模块之后active都要改
             $('#overallTab').addClass('active');
             $('#tenantManageTab').removeClass('active');
+            $('#logInfoTab').removeClass('active');
             var xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function()
             {
@@ -39,6 +58,7 @@
         {
             $('#overallTab').removeClass('active');
             $('#tenantManageTab').addClass('active');
+            $('#logInfoTab').removeClass('active');
             var xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function()
             {
@@ -51,6 +71,22 @@
             xmlhttp.send();
         }
 
+        //跳转新的一天的日志
+        function showNewDayLog()
+        {
+            var date=$('#dateInput').get(0).value;
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    $("#main").html(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/admin/showNewDayLog?date="+date,true);
+            xmlhttp.send();
+        }
         //删除租户
         function deleteTenant(span)
         {
@@ -237,6 +273,7 @@
     <ul class="nav menu">
         <li class="active" id="overallTab"><a href="#" onclick="overall()"><span class="glyphicon glyphicon-dashboard"></span> 总览</a></li>
         <li id="tenantManageTab"><a href="#" onclick="tenantManage()"><span class="glyphicon glyphicon-list"></span> 租户管理</a></li>
+        <li id="logInfoTab"><a href="#" onclick="logInfo()"><span class="glyphicon glyphicon-book"></span> 日志</a></li>
         <li role="presentation" class="divider"></li>
         <li class="parent" id="updateAccountLi">
             <a href="#" onclick="showUpdateAccount()"><span class="glyphicon glyphicon-edit"></span> 修改账号</a>
@@ -264,6 +301,7 @@
             document.getElementById("main").innerHTML=xmlhttp.responseText;
         }
     }
-    xmlhttp.open("get","app/admin/overall",true);
+    //先测试一下log
+    xmlhttp.open("get","app/admin/logInfo",true);
     xmlhttp.send();
 </script>

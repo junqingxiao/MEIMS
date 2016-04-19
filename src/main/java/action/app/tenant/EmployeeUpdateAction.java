@@ -67,7 +67,7 @@ public class EmployeeUpdateAction extends CommonAction
             Log4admin log4admin=new Log4admin();
             log4admin.log("["+getSessionType()+"]  "+getSessionName()+" 更新了一个员工.");
 
-            Log4tenant log4tenant=new Log4tenant(getSessionName());
+            Log4tenant log4tenant=new Log4tenant(getSessionNo());
             log4tenant.log("更新了一个员工.新名字:"+name+",新职位:"+pName+",新部门:"+dName);
 
             return SUCCESS;

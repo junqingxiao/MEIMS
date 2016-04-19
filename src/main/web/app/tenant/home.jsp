@@ -17,7 +17,6 @@
         //跳转overall
         function overall()
         {
-            //todo 更多的模块之后active都要改
             $('#overallTab').addClass('active');
             $('#employeeInfoTab').removeClass('active');
             $('#departmentInfoTab').removeClass('active');

@@ -1,10 +1,9 @@
 package filter.log;
 
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
+import org.apache.log4j.*;
+import org.apache.log4j.helpers.DateLayout;
 import org.apache.log4j.net.SyslogAppender;
+import org.apache.log4j.pattern.DatePatternConverter;
 
 /**
  * @author mk
@@ -41,16 +40,18 @@ public class Log4admin
         // 設定Logger級別。
         logger.setLevel(Admin_LOG_LEVEL);
         // 生成新的Appender
-        FileAppender appender = new FileAppender();
+        DailyRollingFileAppender appender=new DailyRollingFileAppender();
         PatternLayout layout = new PatternLayout();
+        //日志的按天输出
+        String datePattern="'.'yyyy-MM-dd";
+        appender.setDatePattern(datePattern);
         // log的输出形式
         String conversionPattern = "%-d{yyyy-MM-dd HH:mm:ss}  %m%n";
         layout.setConversionPattern(conversionPattern);
         appender.setLayout(layout);
         // log输出路径
-        // 这里使用了环境变量[catalina.home]，只有在tomcat环境下才可以取到
-        //String tomcatPath = java.lang.System.getProperty("catalina.home");
-        appender.setFile("log/admin/admin.log");
+        String tomcatPath = System.getProperty("user.dir");
+        appender.setFile(tomcatPath+ "/log/admin/admin.log");
         // log的文字码
         appender.setEncoding("UTF-8");
         // true:在已存在log文件后面追加 false:新log覆盖以前的log

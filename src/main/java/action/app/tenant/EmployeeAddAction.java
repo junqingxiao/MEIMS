@@ -64,7 +64,7 @@ public class EmployeeAddAction extends CommonAction
 
             getLogger().info(getSessionName()+" add a employee.");
             //租户日志处理
-            Log4tenant log4tenant=new Log4tenant(getSessionName());
+            Log4tenant log4tenant=new Log4tenant(getSessionNo());
             log4tenant.log("添加了一个员工.姓名:"+name+".职位:"+pName+".部门:"+dName+".入职日期"+date);
 
             //admin日志处理

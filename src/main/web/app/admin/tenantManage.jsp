@@ -25,7 +25,6 @@
     <div class="col-md-8">
         <div class="panel panel-default chat">
             <div class="panel-heading" id="accordion">
-
                 <span class="glyphicon glyphicon-list"></span> 租户<span  class="glyphicon glyphicon-plus pull-right" id="addIcon" onclick="addTenantCheck()"></span>
             </div>
             <div class="panel-body">

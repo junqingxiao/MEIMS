@@ -86,7 +86,7 @@ public class PositionAddAction extends CommonAction
 
             getLogger().info(getSessionName()+" add a position.");
             //租户日志处理
-            Log4tenant log4tenant=new Log4tenant(getSessionName());
+            Log4tenant log4tenant=new Log4tenant(getSessionNo());
             log4tenant.log("为"+dName+"添加了一个职位.新职位名:"+name+",工资:"+salary);
 
             //admin日志处理

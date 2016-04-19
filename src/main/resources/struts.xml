@@ -110,5 +110,13 @@
         </action>
         <action name="changePassword" class="action.app.admin.ChangePasswordAction">
         </action>
+        <!-- 日志 -->
+        <action name="logInfo" class="action.app.admin.LogInfoAction">
+            <result>logInfo.jsp</result>
+        </action>
+        <action name="showNewDayLog" class="action.app.admin.ShowNewDayLogAction">
+            <result>logInfo.jsp</result>
+        </action>
+        <!-- 日志 -->
     </package>
 </struts>

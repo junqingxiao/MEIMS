@@ -238,7 +238,7 @@ public class AdminManager extends AbstractManager
         }
         else if(isTenant(name,password))
         {
-            Log4tenant log4tenant=new Log4tenant(name);
+            Log4tenant log4tenant=new Log4tenant(getTenantId(name, password));
             log4tenant.log("登录了.");
             Log4admin log4admin=new Log4admin();
             log4admin.log("[tenant]  "+name+" 登录了.");

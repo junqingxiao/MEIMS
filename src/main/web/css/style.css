@@ -559,12 +559,6 @@ h1.page-header {
     margin-top: 12px;
     margin-right: 18px;
     display: inline-block;
-    color: #9fadbb;
-}
-
-#addIcon:hover
-{
-    color: greenyellow;
 }
 
 /*List Widget*/
@@ -741,6 +735,16 @@ h1.page-header {
     color: #ef4040;
 }
 
+.glyphicon-search
+{
+    color: #9fadbb;
+}
+
+.glyphicon-search:hover
+{
+    color: #777777;
+}
+
 .glyphicon-remove
 {
     color: #9fadbb;
@@ -797,4 +801,21 @@ h1.page-header {
     margin-top: 11px;
     margin-right: 5px;
     color: #9fadbb;
+}
+
+/*日志*/
+.log
+{
+    height: 395px;
+}
+
+#dateInput
+{
+    border: 0;
+}
+
+#dateIcon
+{
+    margin-left: 5px;
+    margin-top: 14px
 }

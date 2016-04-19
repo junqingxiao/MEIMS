@@ -98,7 +98,7 @@ public class PositionUpdateAction extends CommonAction
             Log4admin log4admin = new Log4admin();
             log4admin.log("[" + getSessionType() + "]  " + getSessionName() + " 更新了一个职位.");
 
-            Log4tenant log4tenant = new Log4tenant(getSessionName());
+            Log4tenant log4tenant = new Log4tenant(getSessionNo());
             log4tenant.log("更新了"+dName+"下的职位:"+oldPName+" 新名字:" + pName+" 新工资:" + salary+".");
 
             return SUCCESS;
