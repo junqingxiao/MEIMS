@@ -680,12 +680,16 @@ h1.page-header {
     color: #777777;
 }
 
+.note-main .departmentInput
+{
+    width: 100%;
+}
+
 .departmentInput
 {
     background-color: transparent;
     border: 0;
     text-align: center;
-    width: inherit;
 }
 
 .departmentHeadInput

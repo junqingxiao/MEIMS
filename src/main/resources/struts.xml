@@ -82,6 +82,15 @@
             <result name="error">positionUpdateErrorLi.jsp</result>
         </action>
         <!-- 职位信息 -->
+
+        <!-- 日志 -->
+        <action name="logInfo" class="action.app.tenant.LogInfoAction">
+            <result>logInfo.jsp</result>
+        </action>
+        <action name="showNewDayLog" class="action.app.tenant.ShowNewDayLogAction">
+            <result>logInfo.jsp</result>
+        </action>
+        <!-- 日志 -->
     </package>
 
 

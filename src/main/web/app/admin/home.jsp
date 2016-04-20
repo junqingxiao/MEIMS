@@ -301,7 +301,6 @@
             document.getElementById("main").innerHTML=xmlhttp.responseText;
         }
     }
-    //先测试一下log
-    xmlhttp.open("get","app/admin/logInfo",true);
+    xmlhttp.open("get","app/admin/overall",true);
     xmlhttp.send();
 </script>
