@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<div class="chat-body">
+<div class="chat-body" id="updated-chat-body">
     <div class="header" >
         <small class="text-muted" ><input class="employeeInput" type="text" value=<s:property value="name" /> readonly></small>
         <small class="text-muted"><input class="employeeInput" type="text" value=<s:property value="pName" /> readonly></small>
@@ -20,3 +20,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    //$("#updated-chat-body").parent().click();
+    showRightArea($("#updated-chat-body").parent().get(0));
+</script>

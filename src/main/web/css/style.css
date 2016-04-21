@@ -823,3 +823,177 @@ h1.page-header {
     margin-left: 5px;
     margin-top: 14px
 }
+
+.employeeLi:hover
+{
+    background-color: #eff2f4;
+}
+
+.employeeLi:hover .employeeInput
+{
+    background-color: #eff2f4;
+}
+
+/*时间轴*/
+.timeline {
+    list-style: none;
+    padding: 10px 0 10px;
+    position: relative;
+    background: #fff;
+    height: 395px;
+}
+
+.timeline:before {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 2px;
+    background-color: #7ec7ff;
+    left: 50%;
+    margin-left: -1.5px;
+}
+
+.timeline li {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.timeline li:before, .timeline li:after {
+    content: " ";
+    display: table;
+}
+.timeline li:after {
+    clear: both;
+}
+.timeline li:before, .timeline li:after {
+    content: " ";
+    display: table;
+}
+
+.timeline .text-muted
+{
+    font-size: 12px;
+    color: #9fadbb;
+    margin-left: 0;
+}
+
+.timeline-body
+ {
+     height: 395px;
+    background-color: #fff;
+ }
+.timeline .pre-scrollable
+{
+    height: 395px;
+    max-height: 380px;
+}
+
+/** timeline panels **/
+.timeline li .timeline-panel {
+    width: 43%;
+    float: left;
+    left: 2%;
+    background: #fff;
+    border: 1px solid #d4d4d4;
+    padding: 8px;
+    position: relative;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+}
+
+/** timeline circle icons **/
+.timeline li .tl-circ {
+    position: absolute;
+    top: 23px;
+    left: 50%;
+    text-align: center;
+    background: #30a5ff;
+    color: #fff;
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin-left: -6px;
+    border: 2px solid #30a5ff;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    z-index: 99999;
+}
+
+/** timeline content **/
+
+.tl-heading h4 {
+    margin: 0;
+    color: #30a5ff;
+    font-size: 17px;
+}
+
+.tl-heading h5 {
+    margin: 2px 0;
+    color: #9fadbb;
+    font-size: 13px;
+}
+
+.tl-body p, .tl-body ul {
+    margin-bottom: 0;
+}
+
+.tl-body > p + p {
+    margin-top: 5px;
+}
+
+/** panel arrows **/
+.timeline li .timeline-panel:before {
+    position: absolute;
+    top: 19px;
+    right: -8px;
+    display: inline-block;
+    border-top: 8px solid transparent;
+    border-left: 8px solid #ccc;
+    border-right: 0 solid #ccc;
+    border-bottom: 8px solid transparent;
+    content: " ";
+}
+
+.timeline li .timeline-panel:after {
+    position: absolute;
+    top: 20px;
+    right: -7px;
+    display: inline-block;
+    border-top: 7px solid transparent;
+    border-left: 7px solid #fff;
+    border-right: 0 solid #fff;
+    border-bottom: 7px solid transparent;
+    content: " ";
+}
+.timeline li .timeline-panel.noarrow:before, .timeline li .timeline-panel.noarrow:after {
+    top:0;
+    right:0;
+    display: none;
+    border: 0;
+}
+
+.timeline li.timeline-inverted .timeline-panel {
+    float: right;
+    left: -3%;
+}
+
+.timeline li.timeline-inverted .timeline-panel:before {
+    border-left-width: 0;
+    border-right-width: 8px;
+    left: -8px;
+    right: auto;
+}
+
+.timeline li.timeline-inverted .timeline-panel:after {
+    border-left-width: 0;
+    border-right-width: 7px;
+    left: -7px;
+    right: auto;
+}

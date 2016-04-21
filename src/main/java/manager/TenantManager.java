@@ -5,11 +5,13 @@ import dao.EmployeeDAO;
 import dao.EpchangeDAO;
 import dao.PositionDAO;
 import data.Department;
+import data.EPChange;
 import data.Employee;
 import data.Position;
 import org.MtConnector.Session.MtResultSet;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,6 +30,71 @@ public class TenantManager extends AbstractManager
         positionDAO.init(identifier);
         departmentDAO.init(identifier);
         epchangeDAO.init(identifier);
+    }
+
+    /**
+     * 获得一个epchange
+     */
+    private EPChange getEPChange(int pNo,Date date)
+    {
+        MtResultSet pSet=positionDAO.query(pNo);//按入职职位号查询position
+        pSet.next();
+        String PName=pSet.getString(2);
+        int DNo=pSet.getInt(4);
+        MtResultSet dSet=departmentDAO.query(DNo);
+        dSet.next();
+        String DName=dSet.getString(2);
+        EPChange change=new EPChange();
+        change.setDate(date);
+        change.setDName(DName);
+        change.setPName(PName);
+
+        return change;
+    }
+
+    /**
+     * 获得 员工 的升迁信息
+     */
+    public final List<EPChange> getEPChange(String name)
+    {
+        List<EPChange> list =new ArrayList<EPChange>();
+
+        MtResultSet set= employeeDAO.query("Name",name);
+        set.next();
+        int eNo=set.getInt(1);//员工的no
+        Date entryDate=set.getDate(3);//员工的入职时间
+
+        MtResultSet epSet=epchangeDAO.query("ENo",eNo);
+        if (epSet.next())
+        {//如果有升迁记录
+            //处理入职
+            int entryPNo=epSet.getInt(3);//入职职位号
+            MtResultSet pSet=positionDAO.query(entryPNo);//按入职职位号查询position
+            pSet.next();
+            String entryPName=pSet.getString(2);
+            int entryDNo=pSet.getInt(4);
+            MtResultSet dSet=departmentDAO.query(entryDNo);
+            dSet.next();
+            String entryDName=dSet.getString(2);
+            EPChange entry=new EPChange();
+            entry.setDate(entryDate);
+            entry.setDName(entryDName);
+            entry.setPName(entryPName);
+            list.add(0,entry);
+
+            do
+            {
+                //处理第一次升迁
+                list.add(0,getEPChange(epSet.getInt(4),epSet.getDate(5)));
+            }
+            while (epSet.next());
+        }
+        else
+        {
+            list.add(0,getEPChange(set.getInt(4),entryDate));
+        }
+
+        return list;
     }
 
     /**

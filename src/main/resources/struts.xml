@@ -91,6 +91,12 @@
             <result>logInfo.jsp</result>
         </action>
         <!-- 日志 -->
+
+        <!-- 调动记录 -->
+        <action name="showEPChange" class="action.app.tenant.ShowEPChangeAction">
+            <result>epChangeDiv.jsp</result>
+        </action>
+        <!-- 调动记录 -->
     </package>
 
 

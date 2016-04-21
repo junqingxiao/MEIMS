@@ -65,7 +65,8 @@
             {
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
                 {
-                    document.getElementById("main").innerHTML=xmlhttp.responseText;
+                    //这里用dom元素的话是不能加载script的
+                    $("#main").html(xmlhttp.responseText);
                 }
             }
             xmlhttp.open("get","app/tenant/employeeInfo",true);
@@ -108,6 +109,27 @@
             xmlhttp.send();
         }
 
+        //显示右边区域
+        function showRightArea(li)
+        {
+            var name=$(li).children(":first").children(":first").children(":first").children(":first").get(0).value;
+            var rightName=$("#rightArea").children(":first").children(":first").html();
+
+            if(name != rightName || $("#updated-chat-body").length != 0)
+            {//如果 updated-chat-body 存在则说明是已更新过的 需要更新右边
+                var xmlhttp=new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function()
+                {
+                    if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                    {
+                        $("#rightArea").html(xmlhttp.responseText);
+                    }
+                }
+                xmlhttp.open("get","app/tenant/showEPChange?name="+name,true);
+                xmlhttp.send();
+            }
+        }
+
         //添加员工check
         function addEmployeeCheck()
         {
@@ -126,6 +148,7 @@
                         '</div>'+
                         '</div>'+
                         '</li>');
+                $("#rightArea").html("");
             }
         }
 

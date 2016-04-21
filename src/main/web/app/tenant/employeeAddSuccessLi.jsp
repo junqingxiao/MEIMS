@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <div id="addDiv"></div>
-<li>
+<li class="employeeLi">
     <div class="chat-body">
         <div class="header" >
             <small class="text-muted" ><input class="employeeInput" type="text" value=<s:property value="name" /> readonly></small>
@@ -22,3 +22,7 @@
         </div>
     </div>
 </li>
+
+<script>
+    showRightArea($("#addDiv").next().get(0));
+</script>

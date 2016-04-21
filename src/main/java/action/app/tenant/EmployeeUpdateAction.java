@@ -57,6 +57,7 @@ public class EmployeeUpdateAction extends CommonAction
 
     public String execute() throws Exception
     {
+        // 16/4/21 这里并没有检查和原来不一样
         TenantManager tenantManager=new TenantManager(Constrants.PREFIX+getSessionNo());
         if (tenantManager.updateEmployee(name,pName,dName,no))
         {  //合法

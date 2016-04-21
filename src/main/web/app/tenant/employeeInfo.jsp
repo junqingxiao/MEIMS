@@ -32,7 +32,7 @@
                 <ul>
                     <div id="addDiv"></div>
                     <s:iterator value="list" status="st">
-                        <li>
+                        <li class="employeeLi" onclick="showRightArea(this)">
                             <div class="chat-body">
                                 <div class="header" >
                                     <small class="text-muted" ><input class="employeeInput" type="text" value=<s:property value="name" /> readonly></small>
@@ -50,5 +50,8 @@
                 </ul>
             </div>
         </div>
+    </div>
+
+    <div class="col-md-4" id="rightArea">
     </div>
 </div><!--/.col-->
