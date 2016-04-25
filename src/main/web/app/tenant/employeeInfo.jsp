@@ -55,3 +55,7 @@
     <div class="col-md-4" id="rightArea">
     </div>
 </div><!--/.col-->
+
+<script>
+    showRightArea($("#addDiv").next());
+</script>

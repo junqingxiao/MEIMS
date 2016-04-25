@@ -24,6 +24,7 @@ public class OverallAction extends CommonAction
         AdminManager adminManager=new AdminManager();
         tenantNumber=adminManager.getTenantNumber();
         adminNumber=adminManager.getAdminNumber();
+        adminManager.close();
         return SUCCESS;
     }
 }

@@ -22,4 +22,43 @@
 </div><!--/.row-->
 
 <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-3">
+        <div class="panel panel-blue panel-widget ">
+            <div class="row no-padding">
+                <div class="col-sm-3 col-lg-5 widget-left">
+                    <em class="glyphicon glyphicon-user glyphicon-l"></em>
+                </div>
+                <div class="col-sm-9 col-lg-7 widget-right">
+                    <div class="large">  <s:property value="employeeNumber" /></div>
+                    <div class="text-muted">  员工</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-3">
+        <div class="panel panel-teal panel-widget">
+            <div class="row no-padding">
+                <div class="col-sm-3 col-lg-5 widget-left">
+                    <em class="glyphicon glyphicon-th-list glyphicon-l"></em>
+                </div>
+                <div class="col-sm-9 col-lg-7 widget-right">
+                    <div class="large">  <s:property value="positionNumber" /></div>
+                    <div class="text-muted">  职位</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-3">
+        <div class="panel panel-orange panel-widget">
+            <div class="row no-padding">
+                <div class="col-sm-3 col-lg-5 widget-left">
+                    <em class="glyphicon glyphicon-th-large glyphicon-l"></em>
+                </div>
+                <div class="col-sm-9 col-lg-7 widget-right">
+                    <div class="large">  <s:property value="departmentNumber" /></div>
+                    <div class="text-muted">  部门</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

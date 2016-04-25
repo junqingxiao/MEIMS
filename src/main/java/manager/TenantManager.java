@@ -33,6 +33,51 @@ public class TenantManager extends AbstractManager
     }
 
     /**
+     * 获得department的数量
+     */
+    public final int getDepartmentNumber()
+    {
+        int number;
+
+        MtResultSet set=departmentDAO.count();
+        set.next();
+        number=set.getInt(1);
+        getLogger().info("got department number.");
+
+        return number;
+    }
+
+    /**
+     * 获得position的数量
+     */
+    public final int getPositionNumber()
+    {
+        int number;
+
+        MtResultSet set=positionDAO.count();
+        set.next();
+        number=set.getInt(1);
+        getLogger().info("got position number.");
+
+        return number;
+    }
+
+    /**
+     * 获得employee的数量
+     */
+    public final int getEmployeeNumber()
+    {
+        int number;
+
+        MtResultSet set=employeeDAO.count();
+        set.next();
+        number=set.getInt(1);
+        getLogger().info("got employee number.");
+
+        return number;
+    }
+
+    /**
      * 获得一个epchange
      */
     private EPChange getEPChange(int pNo,Date date)
