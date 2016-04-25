@@ -2,6 +2,7 @@ package manager;
 
 import action.common.Constrants;
 import dao.AdminDAO;
+import dao.TenantCheckDAO;
 import dao.TenantDAO;
 import data.Tenant;
 import filter.log.Log4admin;
@@ -23,11 +24,39 @@ public class AdminManager extends AbstractManager
 
     private AdminDAO adminDAO=new AdminDAO();
     private TenantDAO tenantDAO=new TenantDAO();
+    private TenantCheckDAO tenantCheckDAO=new TenantCheckDAO();
 
     public  AdminManager()
     {
         adminDAO.init();
         tenantDAO.init();
+        tenantCheckDAO.init();
+    }
+
+    /**
+     * 不同意注册
+     */
+    public final void registerRemove(String name,String password)
+    {
+        tenantCheckDAO.delete(tenantCheckDAO.getId(name,password));
+    }
+
+    /**
+     * 同意注册
+     */
+    public final void registerOk(String name,String password)
+    {
+        tenantDAO.insert(name,password);
+
+        tenantCheckDAO.delete(tenantCheckDAO.getId(name,password));
+    }
+
+    /**
+     * 用户注册
+     */
+    public final void registerTenant(String name,String password)
+    {
+        tenantCheckDAO.insert(name,password);
     }
 
     /**
@@ -147,6 +176,37 @@ public class AdminManager extends AbstractManager
     }
 
     /**
+     * 获得注册的 tenant的列表
+     * @return 一个tenant对象的list
+     * 这里按主键倒序排列 1在最后面
+     */
+    public final List<Tenant> getRegisterTenant()
+    {
+        List<Tenant> list=new ArrayList<Tenant>();
+
+        ResultSet set=tenantCheckDAO.queryAll();
+        try
+        {
+            while (set.next())
+            {
+                Tenant tenant=new Tenant();
+                tenant.setPassword(set.getString(3));
+                tenant.setNo(set.getInt(1));
+                tenant.setName(set.getString(2));
+
+                list.add(0,tenant);
+            }
+            getLogger().info("got register tenant.");
+        }
+        catch(SQLException e)
+        {
+            getLogger().error("Error in get register tenant.",e);
+            throw new RuntimeException();
+        }
+        return list;
+    }
+
+    /**
      * 获得tenant的列表
      * @return 一个tenant对象的list
      * 这里按主键倒序排列 1在最后面
@@ -252,6 +312,30 @@ public class AdminManager extends AbstractManager
     }
 
     /**
+     * 获得登录者的身份
+     * @return 身份
+     */
+    public final String getIdentity(String name)
+    {
+        if (isAdmin(name))
+        {
+            return Constrants.ADMIN;
+        }
+        else if(isTenant(name))
+        {
+            return Constrants.TENANT;
+        }
+        else if (isRegisterTenant(name))
+        {
+              return Constrants.TENANT;
+        }
+        else
+        {
+            return Constrants.NOBODY;
+        }
+    }
+
+    /**
      *是否是超级管理员
      */
     private boolean isAdmin(String name,String password)
@@ -314,6 +398,26 @@ public class AdminManager extends AbstractManager
     /**
      * 是否是租户
      */
+    private boolean isRegisterTenant(String name)
+    {
+        ResultSet set=tenantCheckDAO.query("Name",name);
+
+        boolean returnValue;
+        try
+        {
+            returnValue=set.next();
+        }
+        catch (SQLException e)
+        {
+            getLogger().error("Error in next()",e);
+            throw new RuntimeException();
+        }
+        return returnValue;
+    }
+
+    /**
+     * 是否是租户
+     */
     private boolean isTenant(String name,String password)
     {
         ResultSet set=tenantDAO.query("Name",name,"Password",password);
@@ -338,6 +442,7 @@ public class AdminManager extends AbstractManager
     {
         adminDAO.close();
         tenantDAO.close();
+        tenantCheckDAO.close();
     }
 
 

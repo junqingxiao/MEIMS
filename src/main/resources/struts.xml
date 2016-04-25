@@ -22,6 +22,10 @@
             <result name="tenant">app/tenant/home.jsp</result>
             <result name="nobody">account/login.jsp</result>
         </action>
+        <action name="register" class="action.account.RegisterAction">
+            <result name="success">account/login.jsp</result>
+            <result name="error">account/registerError.jsp</result>
+        </action>
     </package>
 
     <package name="app.tenant" namespace="/app/tenant" extends="default">
@@ -107,6 +111,10 @@
         <action name="tenantManage" class="action.app.admin.TenantManageAction">
             <result>tenantManage.jsp</result>
         </action>
+        <action name="registerCheck" class="action.app.admin.RegisterCheckAction">
+            <result>registerCheck.jsp</result>
+        </action>
+
         <action name="tenantDelete" class="action.app.admin.TenantDeleteAction">
             <result type="redirect">tenantManage</result>
         </action>
@@ -125,6 +133,7 @@
         </action>
         <action name="changePassword" class="action.app.admin.ChangePasswordAction">
         </action>
+
         <!-- 日志 -->
         <action name="logInfo" class="action.app.admin.LogInfoAction">
             <result>logInfo.jsp</result>
@@ -133,5 +142,14 @@
             <result>logInfo.jsp</result>
         </action>
         <!-- 日志 -->
+
+        <!-- 注册审核 -->
+        <action name="registerOk" class="action.app.admin.RegisterOkAction">
+            <result>registerCheck.jsp</result>
+        </action>
+        <action name="registerRemove" class="action.app.admin.RegisterRemoveAction">
+            <result>registerCheck.jsp</result>
+        </action>
+        <!-- 注册审核 -->
     </package>
 </struts>

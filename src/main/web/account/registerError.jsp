@@ -1,11 +1,13 @@
 <%--
   Created by IntelliJ IDEA.
   User: mk
-  Date: 16/3/25
-  Time: 下午9:27
+  Date: 16/4/25
+  Time: 下午2:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html>
 <head>
@@ -16,7 +18,7 @@
 
     <link rel="stylesheet" type="text/css"  href="css/style.css">
 </head>
-    <title>MEIMS</title>
+<title>MEIMS</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -46,7 +48,11 @@
                                     <input  type="text" class="form-control" id="name" name="Name" placeholder="账号">
                                 </div>
                             </div>
-                            <br>
+                            <div class="pull-right sign-div">
+                                <span class="glyphicon glyphicon-exclamation-sign" title=
+                                        <s:property value="message"/>></span>
+                            </div>
+
                             <div class="form-group intro-form-group">
                                 <div>
                                     <input type="password" class="form-control" id="password" name="Password" placeholder="密码">

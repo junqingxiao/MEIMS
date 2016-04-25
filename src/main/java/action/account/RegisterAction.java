@@ -1,14 +1,14 @@
 package action.account;
 
+import action.common.CommonAction;
+import action.common.Constrants;
+import filter.log.Log4admin;
+import manager.AdminManager;
+
 /**
  * @author mk
  */
-
-import action.common.CommonAction;
-import action.common.Constrants;
-import manager.AdminManager;
-
-public class LoginAction extends CommonAction
+public class RegisterAction extends CommonAction
 {
     private String name;
     private String password;
@@ -20,17 +20,25 @@ public class LoginAction extends CommonAction
     {
         //判断账号密码是否正确 Manager
         AdminManager adminManager=new AdminManager();
-        String identity=adminManager.getIdentity(name,password);
-        //将type存入session
-        setSessionType(identity);
-        setSessionName(name);
-        //如果是tenant 那么存入no
-        if (identity.equals(Constrants.TENANT))
-        {
-            setSessionNo(adminManager.getTenantId(name,password));
+        String identity=adminManager.getIdentity(name);
+
+        if (identity.equals(Constrants.NOBODY))
+        {//这个账户既不是租户也不是管理员,可以注册
+            adminManager.registerTenant(name,password);
+            getLogger().info("register tenant.name:"+name+",password:"+password+",waiting for check by admin...");
+
+            Log4admin log4admin =new Log4admin();
+            log4admin.log("新用户注册.账号:" +name +",密码:"+password);
+            return SUCCESS;
         }
-        adminManager.close();
-        return identity;
+        else
+        {
+            message=name+"已存在,请尝试新的账号名";
+
+            getLogger().info("the tenant that wanted be registered has exist,refused.");
+
+            return ERROR;
+        }
     }
 
     /**

@@ -22,6 +22,7 @@
             $('#logInfoTab').addClass('active');
             $('#tenantManageTab').removeClass('active');
             $('#overallTab').removeClass('active');
+            $('#registerCheckTab').removeClass('active');
             var xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function()
             {
@@ -41,6 +42,7 @@
             $('#overallTab').addClass('active');
             $('#tenantManageTab').removeClass('active');
             $('#logInfoTab').removeClass('active');
+            $('#registerCheckTab').removeClass('active');
             var xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function()
             {
@@ -59,6 +61,7 @@
             $('#overallTab').removeClass('active');
             $('#tenantManageTab').addClass('active');
             $('#logInfoTab').removeClass('active');
+            $('#registerCheckTab').removeClass('active');
             var xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function()
             {
@@ -87,6 +90,27 @@
             xmlhttp.open("get","app/admin/showNewDayLog?date="+date,true);
             xmlhttp.send();
         }
+
+        //跳转注册审核
+        function registerCheck()
+        {
+            $('#overallTab').removeClass('active');
+            $('#registerCheckTab').addClass('active');
+            $('#logInfoTab').removeClass('active');
+            $('#tenantManageTab').removeClass('active');
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    $("#main").html(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/admin/registerCheck",true);
+            xmlhttp.send();
+        }
+
         //删除租户
         function deleteTenant(span)
         {
@@ -257,6 +281,42 @@
                     '<span class="glyphicon glyphicon-edit"></span> 修改密码'+
                     '</a>');
         }
+
+        //同意注册
+        function registerOk(span)
+        {
+            var name=$(span).parent().prev().prev().prev().html();
+            var password=$(span).parent().prev().prev().html();
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    $("#main").html(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/admin/registerOk?name="+name+"&password="+password,true);
+            xmlhttp.send();
+        }
+
+        //不同意注册
+        function registerRemove(span)
+        {
+            var name=$(span).parent().prev().prev().html();
+            var password=$(span).parent().prev().html();
+
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    $("#main").html(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("get","app/admin/registerRemove?name="+name+"&password="+password,true);
+            xmlhttp.send();
+        }
     </script>
 
     <link rel="stylesheet" type="text/css"  href="css/style.css">
@@ -273,6 +333,7 @@
     <ul class="nav menu">
         <li class="active" id="overallTab"><a href="#" onclick="overall()"><span class="glyphicon glyphicon-dashboard"></span> 总览</a></li>
         <li id="tenantManageTab"><a href="#" onclick="tenantManage()"><span class="glyphicon glyphicon-list"></span> 租户管理</a></li>
+        <li id="registerCheckTab"><a href="#" onclick="registerCheck()"><span class="glyphicon glyphicon-tags"></span> 注册审核</a></li>
         <li id="logInfoTab"><a href="#" onclick="logInfo()"><span class="glyphicon glyphicon-book"></span> 日志</a></li>
         <li role="presentation" class="divider"></li>
         <li class="parent" id="updateAccountLi">
