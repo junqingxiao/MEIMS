@@ -16,7 +16,7 @@
         </action>
     </package>
 
-    <package name="Account" extends="default">
+    <package name="account" extends="default">
         <action name="login" class="action.account.LoginAction">
             <result name="admin">app/admin/home.jsp</result>
             <result name="tenant">app/tenant/home.jsp</result>
@@ -25,6 +25,9 @@
         <action name="register" class="action.account.RegisterAction">
             <result name="success">account/login.jsp</result>
             <result name="error">account/registerError.jsp</result>
+        </action>
+        <action name="logout" class="action.account.LogoutAction">
+            <result>login.jsp</result>
         </action>
     </package>
 
@@ -112,7 +115,7 @@
             <result>tenantManage.jsp</result>
         </action>
         <action name="registerCheck" class="action.app.admin.RegisterCheckAction">
-            <result>registerCheck.jsp</result>
+            <result>../web/account/registerCheck.jsp</result>
         </action>
 
         <action name="tenantDelete" class="action.app.admin.TenantDeleteAction">
@@ -145,10 +148,10 @@
 
         <!-- 注册审核 -->
         <action name="registerOk" class="action.app.admin.RegisterOkAction">
-            <result>registerCheck.jsp</result>
+            <result>../web/account/registerCheck.jsp</result>
         </action>
         <action name="registerRemove" class="action.app.admin.RegisterRemoveAction">
-            <result>registerCheck.jsp</result>
+            <result>../web/account/registerCheck.jsp</result>
         </action>
         <!-- 注册审核 -->
     </package>

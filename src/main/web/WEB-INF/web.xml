@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <!-- 登录权限过滤器 检查session中的'name' == null? 过滤非法的jsp请求 -->
+    <!-- 登录权限过滤器 检查session中的'name' == null? || == nobody 过滤非法的jsp请求 -->
     <filter>
         <filter-name>Login</filter-name>
         <filter-class>filter.security.LoginFilter</filter-class>
@@ -25,7 +25,6 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <!--welcome-file>/app/home.jsp</welcome-file-->
         <welcome-file>/account/login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

@@ -1,5 +1,7 @@
 package filter.security;
 
+import action.common.Constrants;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,7 +18,7 @@ public class LoginFilter implements javax.servlet.Filter
     {
         HttpServletRequest request=(HttpServletRequest)req;
         HttpSession session=request.getSession();
-        if (session.getAttribute("name") == null)
+        if (session.getAttribute("type") == null || session.getAttribute("type").equals(Constrants.NOBODY))
         {
               request.getRequestDispatcher("login.jsp").forward(request,res);
         }

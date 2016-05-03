@@ -1,4 +1,4 @@
-<%--
+<%@ page import="static org.apache.struts2.ServletActionContext.getServletContext" %><%--
   Created by IntelliJ IDEA.
   User: mk
   Date: 16/3/25
@@ -19,6 +19,27 @@
     <title>MEIMS</title>
 </head>
 <body>
+
+<%
+    if (request.getSession().getAttribute("type") == "tenant")
+    {
+        RequestDispatcher rd;
+        rd = getServletContext().getRequestDispatcher("/app/tenant/home.jsp");
+        rd.forward(request,response);
+
+    }
+    else if(request.getSession().getAttribute("type") == "admin")
+    {
+        RequestDispatcher rd;
+        rd = getServletContext().getRequestDispatcher("/app/admin/home.jsp");
+        rd.forward(request,response);
+    }
+    else
+    {
+        session.invalidate();
+    }
+%>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">

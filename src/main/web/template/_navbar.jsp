@@ -23,10 +23,28 @@
                 <li class="dropdown pull-right" >
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navbar_a"><span class="glyphicon glyphicon-user"></span> <s:property value="#session.name" /> <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        <li onclick="logout()"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div><!-- /.container-fluid -->
 </nav>
+
+<script>
+    function logout()
+    {
+        var xmlhttp=new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange=function()
+        {
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                window.location.href="http://"+window.location.host+"/MEIMS/";
+            }
+        }
+
+        xmlhttp.open("get","account/logout",true);
+        xmlhttp.send();
+    }
+</script>
