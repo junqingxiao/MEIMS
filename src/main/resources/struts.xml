@@ -115,7 +115,7 @@
             <result>tenantManage.jsp</result>
         </action>
         <action name="registerCheck" class="action.app.admin.RegisterCheckAction">
-            <result>../web/account/registerCheck.jsp</result>
+            <result>registerCheck.jsp</result>
         </action>
 
         <action name="tenantDelete" class="action.app.admin.TenantDeleteAction">

@@ -297,8 +297,12 @@ public class TenantManager extends AbstractManager
             employeeDAO.update("name",name,"pNo",pNo,no);
             //这里要更新change信息
 
-            java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-            epchangeDAO.insert(no,oldPNo,pNo,date);
+            if (oldPNo != pNo)
+            {//职位不一样才更新升迁纪录
+                java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+                epchangeDAO.insert(no,oldPNo,pNo,date);
+            }
+
             return true;
         }
         else
