@@ -31,7 +31,7 @@
                 <ul>
                     <div id="addDiv"></div>
                     <s:iterator value="list" status="st">
-                    <li>
+                    <li class="tenantLi" onclick="showRightArea(this)">
                         <div class="chat-body">
                             <div class="header" >
                                 <strong class="primary-font" ><input class="tenantInput" type="text" value=<s:property value="name" /> readonly></strong>
@@ -48,34 +48,10 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-
-        <div class="panel panel-blue">
-            <div class="panel-heading dark-overlay"><span class="glyphicon glyphicon-check"></span>To-do List</div>
-            <div class="panel-body">
-                <ul class="todo-list">
-                    <li class="todo-list-item">
-                        <div class="checkbox">
-                            <label for="checkbox">Make a plan for today</label>
-                        </div>
-                        <div class="pull-right action-buttons">
-                            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="#" class="flag" ><span class="glyphicon glyphicon-flag" ></span></a>
-                            <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                        </div>
-                    </li>
-                    <li class="todo-list-item">
-                        <div class="checkbox">
-                            <label for="checkbox">Update Basecamp</label>
-                        </div>
-                        <div class="pull-right action-buttons">
-                            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-                            <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div class="col-md-4" id="rightArea">
     </div>
 </div><!--/.col-->
+
+<script>
+    showRightArea($("#addDiv").next());
+</script>

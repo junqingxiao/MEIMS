@@ -52,7 +52,7 @@ function tenantManage()
     {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
-            document.getElementById("main").innerHTML=xmlhttp.responseText;
+            $("#main").html(xmlhttp.responseText);
         }
     }
     xmlhttp.open("get","app/admin/tenantManage",true);
@@ -94,6 +94,27 @@ function registerCheck()
     }
     xmlhttp.open("get","app/admin/registerCheck",true);
     xmlhttp.send();
+}
+
+//显示右边区域
+function showRightArea(li)
+{
+    var name=$(li).children(":first").children(":first").children(":first").children(":first").get(0).value;
+    var rightName=$("#rightArea").children(":first").children(":first").html();
+
+    if(name != rightName || $("#updated-chat-body").length != 0)
+    {//如果 updated-chat-body 存在则说明是已更新过的 需要更新右边
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                $("#rightArea").html(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("get","app/admin/showTenantTime?name="+name,true);
+        xmlhttp.send();
+    }
 }
 
 //删除租户

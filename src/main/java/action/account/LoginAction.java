@@ -6,7 +6,11 @@ package action.account;
 
 import action.common.CommonAction;
 import action.common.Constrants;
+import filter.log.Log4admin;
+import filter.log.Log4tenant;
 import manager.AdminManager;
+
+import java.sql.Timestamp;
 
 public class LoginAction extends CommonAction
 {
@@ -27,7 +31,20 @@ public class LoginAction extends CommonAction
         //如果是tenant 那么存入no
         if (identity.equals(Constrants.TENANT))
         {
-            setSessionNo(adminManager.getTenantId(name,password));
+            int no=adminManager.getTenantId(name, password);
+            Log4tenant log4tenant=new Log4tenant(no);
+            log4tenant.log("登录了.");
+            Log4admin log4admin=new Log4admin();
+            log4admin.log("[tenant]  "+name+" 登录了.");
+            //记录登录时间
+            adminManager.insertLoginTime(no,new Timestamp(System.currentTimeMillis()));
+            //设置session
+            setSessionNo(no);
+        }
+        else if (identity.equals(Constrants.ADMIN))
+        {
+            Log4admin log4admin=new Log4admin();
+            log4admin.log("[admin]  "+name+" 登录了.");
         }
         adminManager.close();
         return identity;

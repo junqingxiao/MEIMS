@@ -4,6 +4,9 @@ import action.common.CommonAction;
 import action.common.Constrants;
 import filter.log.Log4admin;
 import filter.log.Log4tenant;
+import manager.AdminManager;
+
+import java.sql.Timestamp;
 
 /**
  * @author mk
@@ -17,6 +20,10 @@ public class LogoutAction extends CommonAction
         {
             Log4tenant log4tenant=new Log4tenant(getSessionNo());
             log4tenant.log("登出了.");
+
+            //记录登出时间
+            AdminManager adminManager=new AdminManager();
+            adminManager.insertLogoutTime(getSessionNo(),new Timestamp(System.currentTimeMillis()));
         }
         else if (getSessionType().equals(Constrants.ADMIN))
         {

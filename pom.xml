@@ -22,7 +22,7 @@
         <dependency>
             <groupId>mk</groupId>
             <artifactId>multi-tenant-connector</artifactId>
-            <version>1.1.1</version>
+            <version>1.1.2</version>
         </dependency>
         <!-- multi-tenant-connector -->
 

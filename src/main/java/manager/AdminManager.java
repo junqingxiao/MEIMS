@@ -2,15 +2,15 @@ package manager;
 
 import action.common.Constrants;
 import dao.AdminDAO;
+import dao.LogTimeDAO;
 import dao.TenantCheckDAO;
 import dao.TenantDAO;
 import data.Tenant;
-import filter.log.Log4admin;
-import filter.log.Log4tenant;
-import org.MtConnector.Session.MtResultSet;
+import data.TenantTime;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +25,58 @@ public class AdminManager extends AbstractManager
     private AdminDAO adminDAO=new AdminDAO();
     private TenantDAO tenantDAO=new TenantDAO();
     private TenantCheckDAO tenantCheckDAO=new TenantCheckDAO();
+    private LogTimeDAO logTimeDAO=new LogTimeDAO();
 
     public  AdminManager()
     {
         adminDAO.init();
         tenantDAO.init();
         tenantCheckDAO.init();
+        logTimeDAO.init();
+    }
+
+    /**
+     * 由name查询登入登出记录 最近的在最前面
+     * @param name
+     * @return
+     */
+    public List<TenantTime> showTenentTime(String name)
+    {
+        List<TenantTime> list=new ArrayList<TenantTime>();
+        ResultSet set=logTimeDAO.query("TNo",tenantDAO.getId(name));
+        try
+        {
+            while (set.next())
+            {
+                TenantTime tenantTime=new TenantTime();
+                tenantTime.setLoginTime(set.getTimestamp(3));
+                tenantTime.setLogoutTime(set.getTimestamp(4));
+                list.add(0,tenantTime);
+            }
+            getLogger().info("got tenantTime.");
+        }
+        catch (SQLException e)
+        {
+            getLogger().error("Error in get got tenantTime.",e);
+            throw new RuntimeException();
+        }
+        return list;
+    }
+
+    /**
+     *插入登出时间 将一个最近的Constrants.ORIGINTIME替换
+     */
+    public void insertLogoutTime(int TNo,Timestamp logoutTime)
+    {
+        logTimeDAO.insertLogoutTime(TNo, logoutTime);
+    }
+
+    /**
+     * 插入登录时间 等出时间暂时由Constrants.ORIGINTIME代替
+     */
+    public void insertLoginTime(int TNo, Timestamp loginTime)
+    {
+        logTimeDAO.insertLoginTime(TNo,loginTime);
     }
 
     /**
@@ -285,23 +331,16 @@ public class AdminManager extends AbstractManager
 
     /**
      * 获得登录者的身份
-     * 处理log部分
      * @return 身份
      */
     public final String getIdentity(String name,String password)
     {
         if (isAdmin(name,password))
         {
-            Log4admin log4admin=new Log4admin();
-            log4admin.log("[admin]  "+name+" 登录了.");
             return Constrants.ADMIN;
         }
         else if(isTenant(name,password))
         {
-            Log4tenant log4tenant=new Log4tenant(getTenantId(name, password));
-            log4tenant.log("登录了.");
-            Log4admin log4admin=new Log4admin();
-            log4admin.log("[tenant]  "+name+" 登录了.");
             return Constrants.TENANT;
         }
         else
@@ -443,7 +482,6 @@ public class AdminManager extends AbstractManager
         adminDAO.close();
         tenantDAO.close();
         tenantCheckDAO.close();
+        logTimeDAO.close();
     }
-
-
 }

@@ -1,7 +1,9 @@
 package manager;
 
+import action.common.Constrants;
 import org.junit.Test;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -16,7 +18,7 @@ public class AdminManagerTest
     {
         AdminManager adminManager=new AdminManager();
 
-        List list= adminManager.getTenant();
+        adminManager.insertLogoutTime(27, Timestamp.valueOf("2002-01-01 00:00:00"));
 
         adminManager.close();
     }

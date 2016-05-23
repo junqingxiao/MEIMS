@@ -852,6 +852,16 @@ h1.page-header {
     background-color: #eff2f4;
 }
 
+.tenantLi:hover
+{
+    background-color: #eff2f4;
+}
+
+.tenantLi:hover .tenantInput
+{
+    background-color: #eff2f4;
+}
+
 /*时间轴*/
 .timeline {
     list-style: none;

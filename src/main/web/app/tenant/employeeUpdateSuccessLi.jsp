@@ -22,6 +22,5 @@
 </div>
 
 <script>
-    //$("#updated-chat-body").parent().click();
     showRightArea($("#updated-chat-body").parent().get(0));
 </script>
