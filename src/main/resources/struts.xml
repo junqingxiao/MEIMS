@@ -23,8 +23,8 @@
             <result name="nobody">account/login.jsp</result>
         </action>
         <action name="register" class="action.account.RegisterAction">
-            <result name="success">account/login.jsp</result>
-            <result name="error">account/registerError.jsp</result>
+            <result name="success">login.jsp</result>
+            <result name="error">registerError.jsp</result>
         </action>
         <action name="logout" class="action.account.LogoutAction">
             <result>login.jsp</result>
