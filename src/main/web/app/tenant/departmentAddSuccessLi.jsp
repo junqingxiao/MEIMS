@@ -12,7 +12,7 @@
 <div class="col-md-4">
     <div class="panel panel-info">
         <div class="panel-heading dark-overlay">
-            <input class="departmentInput" type="text" value=
+            <input class="departmentHeadInput" type="text" value=
             <s:property value="name"/> readonly no=<s:property value="no"/>>
             <div class="changeDDiv pull-right">
                 <span class="glyphicon glyphicon-plus pull-right addPIcon" onclick="addPositionCheck(this)"></span>

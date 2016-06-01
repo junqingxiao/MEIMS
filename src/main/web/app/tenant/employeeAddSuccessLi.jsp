@@ -24,5 +24,6 @@
 </li>
 
 <script>
-    showRightArea($("#addDiv").next().get(0));
+    employeeInfo();
+    //showRightArea($("#addDiv").next().get(0));
 </script>

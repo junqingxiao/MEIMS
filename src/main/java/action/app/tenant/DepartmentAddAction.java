@@ -13,6 +13,9 @@ public class DepartmentAddAction extends CommonAction
 {
     private String name;
     private String message;
+    private int no;
+
+    public int getNo(){return  no;}
 
     public String getMessage()
     {
@@ -38,8 +41,10 @@ public class DepartmentAddAction extends CommonAction
     {
         TenantManager tenantManager=new TenantManager(Constrants.PREFIX+getSessionNo());
 
-        if (tenantManager.addDepartment(name))
+        no=tenantManager.addDepartment(name);
+        if (no != 0)
         {  //合法
+
             tenantManager.close();
 
             getLogger().info(getSessionName()+" add a department.");

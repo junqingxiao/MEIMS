@@ -182,6 +182,15 @@ public class AdminManager extends AbstractManager
     }
 
     /**
+     * 删除id的登录登出记录
+     * @param id
+     */
+    public final void dropTenantLogtime(int id)
+    {
+        logTimeDAO.delete("TNo",id);
+    }
+
+    /**
      *先判断name是否存在 再添加
      * @return 新的name是否已存在
      */

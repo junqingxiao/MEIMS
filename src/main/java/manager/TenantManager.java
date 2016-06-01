@@ -232,19 +232,21 @@ public class TenantManager extends AbstractManager
 
     /**
      *先判断新部门是否合法是否存在 再添加
-     * @return 新的部门是否合法
+     * @return 新的部门是否合法 不合法返回0 合法返回id
      */
-    public final boolean addDepartment(String name)
+    public final int addDepartment(String name)
     {
         MtResultSet set=departmentDAO.query("name",name);
         if (set.next())
         {//已经存在这个部门
-            return false;
+            return 0;
         }
         else
         {
             departmentDAO.insert(name);
-            return true;
+            MtResultSet set1=departmentDAO.query("name",name);
+            set1.next();
+            return set1.getInt(1);
         }
     }
 
@@ -337,6 +339,17 @@ public class TenantManager extends AbstractManager
         {
             return false;
         }
+    }
+
+    /**
+     获得员工no
+     */
+    public final int getEmployeeNo(String name)
+    {
+        MtResultSet set=employeeDAO.query("Name",name);
+        set.next();
+        getLogger().info("get employee No");
+        return set.getInt(1);
     }
 
     /**
